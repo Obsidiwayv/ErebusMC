@@ -23,8 +23,7 @@ namespace ErebusLauncher
         public MainWindow()
         {
             InitializeComponent();
-            var key = Java.getVersion();
-            JavaV.Content = key == null;
+            Java.OpenRegistry();
         }
     }
 }

@@ -17,14 +17,14 @@ namespace ErebusLauncher
             key = Registry.LocalMachine.OpenSubKey(name: "SOFTWARE\\JavaSoft\\JDK");
         }
 
-        public static String getVersion()
+        public static String? getVersion()
         {
             if (key == null)
             {
                 return "Java not installed";
             } else
             {
-
+                return key.GetValue("CurrentVersion") as string;
             }
         }
     }
