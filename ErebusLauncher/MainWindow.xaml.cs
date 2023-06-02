@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ErebusLauncher.Windows;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Net;
 
 namespace ErebusLauncher
 {
@@ -22,8 +24,15 @@ namespace ErebusLauncher
     {
         public MainWindow()
         {
+            ServicePointManager.DefaultConnectionLimit = 512;
             InitializeComponent();
-            Java.OpenRegistry();
+        }
+
+        private void Settings_Click(object sender, RoutedEventArgs e)
+        {
+            var settings = new Settings();
+            settings.Content = new UserControl();
+            settings.Show();
         }
     }
 }
