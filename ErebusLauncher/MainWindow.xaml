@@ -6,13 +6,14 @@
         xmlns:local="clr-namespace:ErebusLauncher"
         mc:Ignorable="d"
         xmlns:fa="http://schemas.fontawesome.io/icons/"
-        Title="MainWindow" Height="630" Width="1200">
+        Title="MainWindow" Height="630" Width="1200"
+        WindowState="Maximized">
     <Grid Background="#FF060606">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="61*"/>
             <ColumnDefinition Width="179*"/>
         </Grid.ColumnDefinitions>
-        <hc:Card HorizontalAlignment="Left" VerticalAlignment="Center" Height="562" Width="175" Margin="10,0,0,0" BorderBrush="#FF353535" Background="#FF0A0A0A"/>
+        <hc:Card HorizontalAlignment="Left" Width="175" Margin="10,26,0,26" BorderBrush="#FF353535" Background="#FF0A0A0A"/>
         <Button x:Name="Settings" Content="Settings" HorizontalAlignment="Right" Margin="0,10,10,0" VerticalAlignment="Top" Height="35" Click="Settings_Click" Visibility="Visible" BorderBrush="{x:Null}" Width="126" Background="#FF1C1C1C" Grid.Column="1"/>
         <Button x:Name="LaunchGameButton" hc:BorderElement.CornerRadius="10" Content="Launch Game" HorizontalAlignment="Left" Margin="22,0,0,44" VerticalAlignment="Bottom" Visibility="Visible" BorderBrush="{x:Null}" Height="50" Width="150" Foreground="White" FontSize="18" FontFamily="Arial" BorderThickness="1,1,1,1" Background="#FF4300DC">
             <Button.Effect>

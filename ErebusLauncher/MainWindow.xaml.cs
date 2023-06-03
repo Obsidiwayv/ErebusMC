@@ -63,7 +63,12 @@ namespace ErebusLauncher
         private void UsernameSubmit_Click(object sender, RoutedEventArgs e)
         {
 
-            if (UsernameBox.Text.Length < 3)
+            if (UsernameBox.Text.Length == 0)
+            {
+                HandyControl.Controls.Growl.Error("Cannot have an empty username.");
+                return;
+            } 
+            else if (UsernameBox.Text.Length < 3)
             {
                 HandyControl.Controls.Growl.Error("Must have a username longer than 3 characters.");
                 return;
@@ -73,13 +78,8 @@ namespace ErebusLauncher
                 HandyControl.Controls.Growl.Error("Username must not be longer than 16.");
                 return;
             }
-            else if (UsernameBox.Text.Length == 0)
-            {
-                HandyControl.Controls.Growl.Error("Cannot have an empty username");
-                return;
-            }
-
-            json.UpdateUser(UsernameBox.Text);
+            json.data.Name = UsernameBox.Text;
+            json.SaveData();
         }
     }
 }

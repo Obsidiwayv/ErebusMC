@@ -11,9 +11,10 @@ namespace Erebus.Utils
 {
     internal class LauncherFiles
     {
+        public DataUser? data;
         public void RunChecker()
         {
-                var data = new DataUser()
+                data = new DataUser()
                 {
                     Name = "GenericUser"
                 };
@@ -27,8 +28,11 @@ namespace Erebus.Utils
                 }
         }
 
-        public void UpdateUser(string newName)
-        {}
+        public async void SaveData()
+        {
+            var json = Newtonsoft.Json.JsonConvert.SerializeObject(data);
+            await File.WriteAllTextAsync(Path.Combine(GetLauncherDataFolderPath(), "player.json"), json);
+        }
 
         public string GetLauncherDataFolderPath()
         {
