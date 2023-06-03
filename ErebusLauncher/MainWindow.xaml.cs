@@ -23,7 +23,6 @@ namespace ErebusLauncher
         public MainWindow()
         {
             json = new LauncherFiles();
-            java = SystemInfoHelper.FindJava();
             ServicePointManager.DefaultConnectionLimit = 512;
             ThemeManager.Current.ApplicationTheme = ApplicationTheme.Dark;
             InitializeComponent();
@@ -45,19 +44,6 @@ namespace ErebusLauncher
             var settings = new Settings();
             settings.Content = new UserControl();
             settings.Show();
-        }
-
-        private async void ShowJava_Click(object sender, RoutedEventArgs e)
-        {
-            var javaResult = new List<string>();
-            var jIndex = 0;
-
-            await foreach (var javas in java)
-            {
-                Console.WriteLine($"[{jIndex + 1}] 搜索到的 Java - {javas}");
-                javaResult.Add(javas);
-                jIndex++;
-            }
         }
 
         private void UsernameSubmit_Click(object sender, RoutedEventArgs e)
