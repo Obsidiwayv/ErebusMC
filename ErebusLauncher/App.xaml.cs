@@ -13,5 +13,9 @@ namespace ErebusLauncher
     /// </summary>
     public partial class App : Application
     {
+        private void ThemeResources_SystemThemeChanged(object sender, HandyControl.Data.FunctionEventArgs<HandyControl.Themes.ThemeManager.SystemTheme> e)
+        {
+
+        }
     }
 }

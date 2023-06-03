@@ -1,25 +1,30 @@
-﻿<Window x:Class="ErebusLauncher.MainWindow"
+﻿<Window xmlns:hc="https://handyorg.github.io/handycontrol"  x:Class="ErebusLauncher.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ErebusLauncher"
         mc:Ignorable="d"
-        Title="MainWindow" Height="630" Width="1200"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
-        TextElement.FontWeight="Regular"
-        TextElement.FontSize="13"
-        TextOptions.TextFormattingMode="Ideal" 
-        TextOptions.TextRenderingMode="Auto"        
-        Background="{DynamicResource MaterialDesignPaper}"
-        FontFamily="{DynamicResource MaterialDesignFont}">
-    <Grid>
+        xmlns:fa="http://schemas.fontawesome.io/icons/"
+        Title="MainWindow" Height="630" Width="1200">
+    <Grid Background="#FF060606">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="149*"/>
-            <ColumnDefinition Width="151*"/>
+            <ColumnDefinition Width="61*"/>
+            <ColumnDefinition Width="179*"/>
         </Grid.ColumnDefinitions>
-        <Button x:Name="Settings" Content="{materialDesign:PackIcon Wrench}" HorizontalAlignment="Left" Margin="278,177,0,0" VerticalAlignment="Top" Click="Settings_Click"/>
-        <Rectangle HorizontalAlignment="Left" Height="60" Stroke="Black" VerticalAlignment="Top" Width="1200" Grid.ColumnSpan="2"/>
+        <hc:Card HorizontalAlignment="Left" VerticalAlignment="Center" Height="562" Width="175" Margin="10,0,0,0" BorderBrush="#FF353535" Background="#FF0A0A0A"/>
+        <Button x:Name="Settings" Content="Settings" HorizontalAlignment="Right" Margin="0,10,10,0" VerticalAlignment="Top" Height="35" Click="Settings_Click" Visibility="Visible" BorderBrush="{x:Null}" Width="126" Background="#FF1C1C1C" Grid.Column="1"/>
+        <Button x:Name="LaunchGameButton" hc:BorderElement.CornerRadius="10" Content="Launch Game" HorizontalAlignment="Left" Margin="22,0,0,44" VerticalAlignment="Bottom" Visibility="Visible" BorderBrush="{x:Null}" Height="50" Width="150" Foreground="White" FontSize="18" FontFamily="Arial" BorderThickness="1,1,1,1" Background="#FF4300DC">
+            <Button.Effect>
+                <DropShadowEffect BlurRadius="40" Direction="300" Color="#FF4300DC"/>
+            </Button.Effect>
+        </Button>
+        <Button x:Name="UsernameSubmit" hc:BorderElement.CornerRadius="10" Content="Submit" HorizontalAlignment="Left" Margin="22,106,0,0" VerticalAlignment="Top" Visibility="Visible" BorderBrush="{x:Null}" Width="150" Foreground="White" FontFamily="Arial" BorderThickness="1,1,1,1" Background="#FF00DC5E" FontSize="14" Click="UsernameSubmit_Click">
+            <Button.Effect>
+                <DropShadowEffect BlurRadius="40" Direction="300" Color="Black"/>
+            </Button.Effect>
+        </Button>
+        <TextBox x:Name="UsernameBox" hc:BorderElement.CornerRadius="10" Margin="22,73,0,0" TextWrapping="Wrap" Width="150" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+        <Label Content="Username" HorizontalAlignment="Left" Margin="59,34,0,0" VerticalAlignment="Top" BorderBrush="{x:Null}" Background="{x:Null}"/>
     </Grid>
 </Window>

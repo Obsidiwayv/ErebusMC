@@ -3,12 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:ErebusLauncher"
              StartupUri="MainWindow.xaml"
-             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
+             xmlns:hc="https://handyorg.github.io/handycontrol">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <materialDesign:BundledTheme BaseTheme="Dark" PrimaryColor="Purple" SecondaryColor="Red" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+                <hc:ThemeResources RequestedTheme="Dark" UsingSystemTheme="true" SystemThemeChanged="ThemeResources_SystemThemeChanged" AccentColor="#FF4E00FF"/>
+                <hc:Theme/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
