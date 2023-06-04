@@ -22,6 +22,8 @@ namespace ErebusLauncher
 
         private DiscordRpcClient client;
 
+        private Boolean CanLaunchGame;
+
         public MainWindow()
         {
             json = new LauncherFiles();
