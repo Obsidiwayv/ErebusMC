@@ -12,26 +12,47 @@ namespace Erebus.Utils
     internal class LauncherFiles
     {
         public DataUser? data;
+        public UserConfig config;
+
         public void RunChecker()
         {
-                data = new DataUser()
-                {
-                    Name = "GenericUser"
-                };
+            data = new DataUser()
+            {
+                Name = "GenericUser"
+            };
 
-                Directory.CreateDirectory(GetLauncherDataFolderPath());
-                var playerPath = Path.Combine(GetLauncherDataFolderPath(), "player.json");
-                if (!File.Exists(playerPath))
-                {
-                    string json = JsonSerializer.Serialize(data);
-                    File.WriteAllText(playerPath, json);
-                }
+            config = new UserConfig()
+            {
+                GameVersion = "None",
+                JavaVersion = "None",
+                Theme = "Dark"
+            };
+
+            Directory.CreateDirectory(GetLauncherDataFolderPath());
+            var playerPath = Path.Combine(GetLauncherDataFolderPath(), "player.json");
+            var configPath = Path.Combine(GetLauncherDataFolderPath(), "config.json");
+            if (!File.Exists(playerPath))
+            {
+                string json = JsonSerializer.Serialize(data);
+                File.WriteAllText(playerPath, json);
+            }
+            if (!File.Exists(configPath))
+            {
+                String json = JsonSerializer.Serialize(config);
+                File.WriteAllText(configPath, json);
+            }
         }
 
         public async void SaveData()
         {
             var json = Newtonsoft.Json.JsonConvert.SerializeObject(data);
             await File.WriteAllTextAsync(Path.Combine(GetLauncherDataFolderPath(), "player.json"), json);
+        }
+
+        public async void SaveConfig()
+        {
+            var json = Newtonsoft.Json.JsonConvert.SerializeObject(config);
+            await File.WriteAllTextAsync(Path.Combine(GetLauncherDataFolderPath(), "config.json"), json);
         }
 
         public string GetLauncherDataFolderPath()

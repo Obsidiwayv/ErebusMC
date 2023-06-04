@@ -9,6 +9,7 @@ using ProjBobcat.Class.Helper;
 using System.Collections.Generic;
 using System;
 using Erebus.Utils;
+using DiscordRPC;
 
 namespace ErebusLauncher
 {
@@ -19,13 +20,23 @@ namespace ErebusLauncher
     {
         private LauncherFiles json;
 
+        private DiscordRpcClient client;
+
         public MainWindow()
         {
             json = new LauncherFiles();
             ServicePointManager.DefaultConnectionLimit = 512;
-            ThemeManager.Current.ApplicationTheme = ApplicationTheme.Dark;
             InitializeComponent();
             json.RunChecker();
+
+            var presence = new DiscordPresence();
+            client = presence.RunConnection("Looking for a game");
+
+            if (json.config.JavaVersion == "None" && json.config.GameVersion == "None")
+            {
+                LaunchGameButton.Background = Brushes.LightGray;
+                LaunchGameButton.Foreground = Brushes.Black;
+            }    
         }
 
         private void Card_ColorChanged(object sender, RoutedPropertyChangedEventArgs<Color> e)
@@ -34,9 +45,7 @@ namespace ErebusLauncher
         }
 
         private void ThemeResources_SystemThemeChanged(object? sender, FunctionEventArgs<ThemeManager.SystemTheme> e)
-        {
-            ThemeManager.Current.AccentColor = Brushes.IndianRed;
-        }
+        {}
 
         private void Settings_Click(object sender, RoutedEventArgs e)
         {
