@@ -17,7 +17,6 @@ namespace ErebusLauncher
     /// </summary>
     public partial class MainWindow : Window
     {
-        private System.Collections.Generic.IAsyncEnumerable<string> java;
         private LauncherFiles json;
 
         public MainWindow()
@@ -64,8 +63,10 @@ namespace ErebusLauncher
                 HandyControl.Controls.Growl.Error("Username must not be longer than 16.");
                 return;
             }
+
             json.data.Name = UsernameBox.Text;
             json.SaveData();
+            HandyControl.Controls.Growl.Success($"Updated username to {UsernameBox.Text}");
         }
     }
 }

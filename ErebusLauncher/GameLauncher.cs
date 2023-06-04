@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProjBobcat.Class.Helper;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,5 @@ namespace ErebusLauncher
 {
     internal class GameLauncher
     {
-        private IEnumerable<string> javaList;
     }
 }

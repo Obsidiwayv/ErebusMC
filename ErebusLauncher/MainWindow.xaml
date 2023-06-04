@@ -14,7 +14,7 @@
             <ColumnDefinition Width="179*"/>
         </Grid.ColumnDefinitions>
         <hc:Card HorizontalAlignment="Left" Width="175" Margin="10,26,0,26" BorderBrush="#FF353535" Background="#FF0A0A0A"/>
-        <Button x:Name="Settings" hc:BorderElement.CornerRadius="10" Content="Settings" HorizontalAlignment="Right" Margin="0,10,10,0" VerticalAlignment="Top" Height="35" Click="Settings_Click" Visibility="Visible" BorderBrush="{x:Null}" Width="126" Background="#FF1C1C1C" Grid.Column="1"/>
+        <Button x:Name="Settings" hc:BorderElement.CornerRadius="10" Content="Settings" HorizontalAlignment="Right" Margin="0,26,19,0" VerticalAlignment="Top" Height="36" Click="Settings_Click" Visibility="Visible" BorderBrush="{x:Null}" Width="126" Background="#FF1C1C1C" Grid.Column="1"/>
         <Button x:Name="LaunchGameButton" hc:BorderElement.CornerRadius="10" Content="Launch Game" HorizontalAlignment="Left" Margin="22,0,0,44" VerticalAlignment="Bottom" Visibility="Visible" BorderBrush="{x:Null}" Height="50" Width="150" Foreground="White" FontSize="18" FontFamily="Arial" BorderThickness="1,1,1,1" Background="#FF4300DC">
             <Button.Effect>
                 <DropShadowEffect BlurRadius="40" Direction="300" Color="#FF4300DC"/>
@@ -27,12 +27,40 @@
         </Button>
         <TextBox x:Name="UsernameBox" hc:BorderElement.CornerRadius="10" Margin="22,73,0,0" TextWrapping="Wrap" Width="150" VerticalAlignment="Top" HorizontalAlignment="Left"/>
         <Label Content="Username" HorizontalAlignment="Left" Margin="59,34,0,0" VerticalAlignment="Top" BorderBrush="{x:Null}" Background="{x:Null}"/>
-        <ListView x:Name="JavaList" hc:BorderElement.CornerRadius="10" Margin="754,393,11,49" Background="#FF0A0A0A" Grid.Column="1"/>
-        <Button x:Name="JavaRefresh" hc:BorderElement.CornerRadius="10" Content="Refresh" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Visibility="Visible" BorderBrush="{x:Null}" Foreground="White" FontFamily="Arial" BorderThickness="1,1,1,1" Background="#FF1C1C1C" FontSize="14" Grid.Column="1" Width="131" Height="28">
+        <hc:Card Margin="211,28,165,382" BorderBrush="#FF353535" Background="#FF0A0A0A" Grid.ColumnSpan="2"/>
+        <Button hc:BorderElement.CornerRadius="10" HorizontalAlignment="Left" Margin="250,48,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="127" Width="127" BorderBrush="White" Background="#FF1C1C1C">
+            <Image Source="Image\MCIcons\fabric.png" Height="102" Width="96"></Image>
             <Button.Effect>
                 <DropShadowEffect BlurRadius="40" Direction="300" Color="Black"/>
             </Button.Effect>
         </Button>
-        <Label Content="Java List" HorizontalAlignment="Right" Margin="0,0,40,226" VerticalAlignment="Bottom" BorderBrush="{x:Null}" Background="{x:Null}" Grid.Column="1" Width="66" Height="28"/>
+        <Label Content="Fabric" HorizontalAlignment="Left" Margin="282,186,0,0" VerticalAlignment="Top" BorderBrush="{x:Null}" Background="{x:Null}" Grid.ColumnSpan="2" FontSize="16" Height="37"/>
+        <Button hc:BorderElement.CornerRadius="10" HorizontalAlignment="Left" Margin="100,48,0,0" VerticalAlignment="Top" Height="127" Width="127" BorderBrush="White" Background="#FF1C1C1C" Grid.Column="1">
+            <Button.Effect>
+                <DropShadowEffect BlurRadius="40" Direction="300" Color="Black"/>
+            </Button.Effect>
+            <Image Source="/Image/MCIcons/forge.png" Height="100" Width="98"/>
+        </Button>
+        <Label Content="Forge" HorizontalAlignment="Left" Margin="132,186,0,0" VerticalAlignment="Top" BorderBrush="{x:Null}" Background="{x:Null}" FontSize="16" Height="37" Grid.Column="1"/>
+        <Button hc:BorderElement.CornerRadius="10" HorizontalAlignment="Left" Margin="257,48,0,0" VerticalAlignment="Top" Height="127" Width="127" BorderBrush="White" Grid.Column="1">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF96312E"/>
+                    <GradientStop Color="#FF6F1920" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+            <Button.Effect>
+                <DropShadowEffect BlurRadius="40" Direction="300" Color="Black"/>
+            </Button.Effect>
+            <Image Source="/Image/MCIcons/optifine.gif" Height="103" Width="100"/>
+        </Button>
+        <Label Content="Optifine" HorizontalAlignment="Left" Margin="280,186,0,0" VerticalAlignment="Top" BorderBrush="{x:Null}" Background="{x:Null}" FontSize="16" Height="37" Grid.Column="1"/>
+        <Button hc:BorderElement.CornerRadius="10" Margin="411,52,0,0" VerticalAlignment="Top" Height="120" Width="120" BorderBrush="White" Background="#FF1C1C1C" Grid.Column="1" HorizontalAlignment="Left">
+            <Button.Effect>
+                <DropShadowEffect BlurRadius="40" Direction="300" Color="Black"/>
+            </Button.Effect>
+            <Image Source="/Image/MCIcons/quilt.png" Height="95" Width="91"/>
+        </Button>
+        <Label Content="Quilt" HorizontalAlignment="Left" Margin="443,186,0,0" VerticalAlignment="Top" BorderBrush="{x:Null}" Background="{x:Null}" FontSize="16" Height="36" Grid.Column="1"/>
     </Grid>
 </Window>

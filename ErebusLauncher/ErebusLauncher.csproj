@@ -8,9 +8,10 @@
     <Configurations>Debug;Release</Configurations>
     <Platforms>x64</Platforms>
     <Title>ErebusMC</Title>
-    <SupportedOSPlatformVersion>8.0</SupportedOSPlatformVersion>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
+    <ApplicationIcon>Image\VoidBlock-dark.ico</ApplicationIcon>
+    <SupportedOSPlatformVersion>7.0</SupportedOSPlatformVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -21,12 +22,17 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Image\VoidBlock-dark.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="DiscordRichPresence" Version="1.1.3.18" />
     <PackageReference Include="HandyControls" Version="3.4.5" />
     <PackageReference Include="ProjBobcat" Version="1.30.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="Classes\Erebus.MojangAPI\Erebus.MojangAPI.csproj" />
     <ProjectReference Include="Classes\Erebus.Utils\Erebus.Utils.csproj" />
   </ItemGroup>
 
