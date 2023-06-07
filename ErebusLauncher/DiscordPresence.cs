@@ -1,5 +1,6 @@
 ﻿using DiscordRPC;
 using DiscordRPC.Logging;
+using Obsidi.Jupiter;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,8 @@ namespace ErebusLauncher
 
         public DiscordRpcClient RunConnection(string current)
         {
+            Logger logger = new(SystemConfig.DEFAULT_NAME);
+
             client = new DiscordRPC.DiscordRpcClient(SystemConfig.APPID);
 
             client.Logger = new ConsoleLogger() { Level = LogLevel.Warning };
@@ -24,11 +27,19 @@ namespace ErebusLauncher
             client.OnReady += (sender, e) =>
             {
                 Console.WriteLine("Received Ready from user {0}", e.User.Username);
+                logger.StackLog("INFO", $"presence ready on {e.User.Username}");
+            };
+
+            client.OnConnectionFailed += (sender, e) =>
+            {
+                Console.WriteLine("Discord is potentialy not running... continuing without it");
             };
 
             client.OnPresenceUpdate += (sender, e) =>
             {
                 Console.WriteLine("Received Update! {0}", e.Presence);
+                logger.StackLog("INFO", $"Presence update, {e.Presence}");
+                logger.OutputLogs("Discord");
             };
 
             //Connect to the RPC

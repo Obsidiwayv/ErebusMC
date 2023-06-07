@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Settings" Height="250" Width="500"
         ResizeMode="CanMinimize">
-    <Grid>
+    <Grid Background="#FF060606">
         
     </Grid>
 </Window>

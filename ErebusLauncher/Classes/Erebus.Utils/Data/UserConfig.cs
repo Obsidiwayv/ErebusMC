@@ -10,6 +10,8 @@ namespace Erebus.Utils.Data
     {
         public String Theme { get; set; }
 
+        public String ThemeColor {  get; set; }
+
         public String GameVersion { get; set; }
 
         public String JavaVersion { get; set; }

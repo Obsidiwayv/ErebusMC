@@ -34,6 +34,7 @@
   <ItemGroup>
     <ProjectReference Include="Classes\Erebus.MojangAPI\Erebus.MojangAPI.csproj" />
     <ProjectReference Include="Classes\Erebus.Utils\Erebus.Utils.csproj" />
+    <ProjectReference Include="Classes\Obsidi.Jupiter\Obsidi.Jupiter.csproj" />
   </ItemGroup>
 
   <ItemGroup>

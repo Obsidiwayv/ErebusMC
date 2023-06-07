@@ -25,7 +25,8 @@ namespace Erebus.Utils
             {
                 GameVersion = "None",
                 JavaVersion = "None",
-                Theme = "Dark"
+                Theme = "Dark",
+                ThemeColor = "Galaxy"
             };
 
             Directory.CreateDirectory(GetLauncherDataFolderPath());
