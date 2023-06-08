@@ -6,11 +6,12 @@
         xmlns:local="clr-namespace:ErebusLauncher"
         mc:Ignorable="d"
         xmlns:fa="http://schemas.fontawesome.io/icons/"
-        Title="MainWindow" Height="630" Width="1200"
+        Title="Erebus Launcher" Height="630" Width="1200"
         WindowState="Maximized">
     <Grid Background="#FF060606">
-        <hc:Card HorizontalAlignment="Left" Width="175" Margin="10,26,0,26" BorderBrush="#FF353535" Background="#FF0A0A0A"/>
-        <Button x:Name="Settings" hc:BorderElement.CornerRadius="10" Content="Settings" HorizontalAlignment="Right" Margin="0,26,19,0" VerticalAlignment="Top" Height="36" Click="Settings_Click" Visibility="Visible" BorderBrush="{x:Null}" Width="126" Background="#FF1C1C1C" Grid.Column="1"/>
+        <hc:Card x:Name="GameCard" HorizontalAlignment="Left" Width="969" Margin="212,26,0,26" BorderBrush="#FF353535" Background="#FF0A0A0A"/>
+        <hc:Card x:Name="MainCard" HorizontalAlignment="Left" Width="175" Margin="10,26,0,26" BorderBrush="#FF353535" Background="#FF0A0A0A"/>
+        <Button x:Name="Settings" hc:BorderElement.CornerRadius="10" Content="Settings" HorizontalAlignment="Right" Margin="0,528,845,0" VerticalAlignment="Top" Height="36" Click="Settings_Click" Visibility="Visible" BorderBrush="{x:Null}" Width="126" Background="#FF1C1C1C"/>
         <Button x:Name="LaunchGameButton" hc:BorderElement.CornerRadius="10" Content="Launch Game" HorizontalAlignment="Left" Margin="22,0,0,44" VerticalAlignment="Bottom" Visibility="Visible" BorderBrush="{x:Null}" Height="50" Width="150" Foreground="White" FontSize="18" FontFamily="Arial" BorderThickness="1,1,1,1" Background="#FF4300DC">
             <Button.Effect>
                 <DropShadowEffect BlurRadius="40" Direction="300" Color="Black"/>
@@ -23,26 +24,5 @@
         </Button>
         <TextBox x:Name="UsernameBox" hc:BorderElement.CornerRadius="10" Margin="22,73,0,0" TextWrapping="Wrap" Width="150" VerticalAlignment="Top" HorizontalAlignment="Left"/>
         <Label Content="Username" HorizontalAlignment="Left" Margin="59,34,0,0" VerticalAlignment="Top" BorderBrush="{x:Null}" Background="{x:Null}"/>
-        <hc:Card Margin="211,28,165,0" BorderBrush="#FF353535" Background="#FF0A0A0A" Height="83" VerticalAlignment="Top"/>
-        <Button Content="Fabric" hc:BorderElement.CornerRadius="10" HorizontalAlignment="Left" Margin="250,48,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="42" Width="127" BorderBrush="White" Background="#FF1C1C1C" FontSize="16">
-            <Button.Effect>
-                <DropShadowEffect BlurRadius="40" Direction="300" Color="Black"/>
-            </Button.Effect>
-        </Button>
-        <Button Content="Forge" hc:BorderElement.CornerRadius="10" HorizontalAlignment="Left" Margin="400,48,0,0" VerticalAlignment="Top" Height="42" Width="127" BorderBrush="White" Background="#FF1C1C1C" FontSize="16">
-            <Button.Effect>
-                <DropShadowEffect BlurRadius="40" Direction="300" Color="Black"/>
-            </Button.Effect>
-        </Button>
-        <Button Content="Optifine" hc:BorderElement.CornerRadius="10" HorizontalAlignment="Left" Margin="551,48,0,0" VerticalAlignment="Top" Height="42" Width="127" BorderBrush="White" Background="#FF1C1C1C" FontSize="16">
-            <Button.Effect>
-                <DropShadowEffect BlurRadius="40" Direction="300" Color="Black"/>
-            </Button.Effect>
-        </Button>
-        <Button Content="Quilt" hc:BorderElement.CornerRadius="10" HorizontalAlignment="Left" Margin="706,48,0,0" VerticalAlignment="Top" Height="42" Width="127" BorderBrush="White" Background="#FF1C1C1C" FontSize="16">
-            <Button.Effect>
-                <DropShadowEffect BlurRadius="40" Direction="300" Color="Black"/>
-            </Button.Effect>
-        </Button>
     </Grid>
 </Window>

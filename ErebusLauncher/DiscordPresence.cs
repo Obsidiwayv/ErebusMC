@@ -13,6 +13,8 @@ namespace ErebusLauncher
     {
         private DiscordRpcClient client;
 
+        private Boolean HasFailed;
+
         public DiscordRpcClient RunConnection(string current)
         {
             Logger logger = new(SystemConfig.DEFAULT_NAME);
@@ -33,6 +35,13 @@ namespace ErebusLauncher
             client.OnConnectionFailed += (sender, e) =>
             {
                 Console.WriteLine("Discord is potentialy not running... continuing without it");
+                if (!this.HasFailed)
+                {
+                    logger.StackLog("WARN", "Cannot connect to discord, is the application open?");
+                    logger.StackLog("INFO", "continuing without rich presence");
+                    logger.OutputLogs("Discord");
+                    this.HasFailed = true;
+                }
             };
 
             client.OnPresenceUpdate += (sender, e) =>

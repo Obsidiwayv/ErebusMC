@@ -38,12 +38,28 @@ namespace ErebusLauncher
             {
                 LaunchGameButton.Background = Brushes.LightGray;
                 LaunchGameButton.Foreground = Brushes.Black;
-            }    
+            }
+
+            UpdateTheme(json.config.Theme);
         }
 
         private void Card_ColorChanged(object sender, RoutedPropertyChangedEventArgs<Color> e)
         {
 
+        }
+
+        public void UpdateTheme(string dol)
+        {
+            if (dol == "Light")
+            {
+                MainCard.Background = Brushes.FloralWhite;
+                GameCard.Background = Brushes.White;
+            }
+            else
+            {
+                MainCard.Background = Brushes.DarkSlateGray;
+                GameCard.Background = Brushes.DimGray;
+            }
         }
 
         private void ThemeResources_SystemThemeChanged(object? sender, FunctionEventArgs<ThemeManager.SystemTheme> e)
@@ -52,7 +68,6 @@ namespace ErebusLauncher
         private void Settings_Click(object sender, RoutedEventArgs e)
         {
             var settings = new Settings();
-            settings.Content = new UserControl();
             settings.Show();
         }
 

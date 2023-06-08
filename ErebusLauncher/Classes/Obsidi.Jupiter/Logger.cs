@@ -24,8 +24,8 @@ namespace Obsidi.Jupiter
         public void OutputLogs(string proj)
         {
             var time = DateTime.Now.ToString("yyyy'-'MM'-'dd'T'HH'-'mm'-'ss");
-            Directory.CreateDirectory(fs.GetLogOutputDir());
-            File.WriteAllText(Path.Combine(fs.GetLogOutputDir(), $"{proj}-{time}.txt"), Stack);
+            Directory.CreateDirectory(Path.Combine(fs.GetLogOutputDir(), proj));
+            File.WriteAllText(Path.Combine(fs.GetLogOutputDir(), proj, $"{time}.txt"), Stack);
             Stack = "";
         }
     }

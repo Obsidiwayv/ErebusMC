@@ -8,6 +8,12 @@
         Title="Settings" Height="250" Width="500"
         ResizeMode="CanMinimize">
     <Grid Background="#FF060606">
-        
+        <StackPanel/>
+        <Canvas>
+            <ComboBox x:Name="ColorBox" Canvas.Left="106" Canvas.Top="25" Width="120" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.975,0.484"/>
+            <ComboBox x:Name="ThemeBox" Canvas.Left="106" Canvas.Top="98" Width="120" HorizontalAlignment="Left" VerticalAlignment="Center" SelectionChanged="ThemeBox_SelectionChanged"/>
+            <Label Content="Theme" Canvas.Left="29" Canvas.Top="98" HorizontalAlignment="Left" VerticalAlignment="Top" BorderBrush="{x:Null}" Background="{x:Null}"/>
+            <Label Content="Color" Canvas.Left="29" Canvas.Top="25" VerticalAlignment="Top" BorderBrush="{x:Null}" Background="{x:Null}"/>
+        </Canvas>
     </Grid>
 </Window>
