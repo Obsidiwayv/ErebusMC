@@ -6,7 +6,6 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Erebus.Utils.Data;
 using System.Diagnostics;
-
 namespace Erebus.Utils
 {
     internal class LauncherFiles
@@ -41,6 +40,9 @@ namespace Erebus.Utils
             {
                 String json = JsonSerializer.Serialize(config);
                 File.WriteAllText(configPath, json);
+            } else
+            {
+                config = GetLauncherConfigFile();
             }
         }
 
@@ -59,6 +61,14 @@ namespace Erebus.Utils
         public string GetLauncherDataFolderPath()
         {
             return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "ErebusLauncher");
+        }
+
+        public UserConfig GetLauncherConfigFile()
+        {
+            var path = Path.Combine(GetLauncherDataFolderPath(), "config.json");
+            var configFile = File.ReadAllText(path);
+            var config = JsonSerializer.Deserialize<UserConfig>(configFile);
+            return config;
         }
     }
 }

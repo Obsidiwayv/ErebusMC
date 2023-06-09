@@ -10,6 +10,8 @@ using System.Collections.Generic;
 using System;
 using Erebus.Utils;
 using DiscordRPC;
+using Erebus.Utils.Data;
+using System.Linq;
 
 namespace ErebusLauncher
 {
@@ -23,6 +25,8 @@ namespace ErebusLauncher
         private DiscordRpcClient client;
 
         private Boolean CanLaunchGame;
+
+        private UserConfig CurrentConfig;
 
         public MainWindow()
         {
@@ -40,7 +44,9 @@ namespace ErebusLauncher
                 LaunchGameButton.Foreground = Brushes.Black;
             }
 
-            UpdateTheme(json.config.Theme);
+            CurrentConfig = json.GetLauncherConfigFile();
+
+            UpdateTheme(CurrentConfig.Theme);
         }
 
         private void Card_ColorChanged(object sender, RoutedPropertyChangedEventArgs<Color> e)
@@ -53,12 +59,12 @@ namespace ErebusLauncher
             if (dol == "Light")
             {
                 MainCard.Background = Brushes.FloralWhite;
-                GameCard.Background = Brushes.White;
+                GameCard.Background = Brushes.FloralWhite;
             }
             else
             {
-                MainCard.Background = Brushes.DarkSlateGray;
-                GameCard.Background = Brushes.DimGray;
+                MainCard.Background = Brushes.Black;
+                GameCard.Background = Brushes.Black;
             }
         }
 
@@ -93,6 +99,11 @@ namespace ErebusLauncher
             json.data.Name = UsernameBox.Text;
             json.SaveData();
             HandyControl.Controls.Growl.Success($"Updated username to {UsernameBox.Text}");
+        }
+
+        private void LaunchGameButton_Click(object sender, RoutedEventArgs e)
+        {
+            HandyControl.Controls.Growl.Info(SystemInfoHelper.FindJava().ToString());
         }
     }
 }

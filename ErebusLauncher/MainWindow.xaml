@@ -9,10 +9,14 @@
         Title="Erebus Launcher" Height="630" Width="1200"
         WindowState="Maximized">
     <Grid Background="#FF060606">
-        <hc:Card x:Name="GameCard" HorizontalAlignment="Left" Width="969" Margin="212,26,0,26" BorderBrush="#FF353535" Background="#FF0A0A0A"/>
+        <hc:Card x:Name="GameCard" Margin="212,26,19,26" BorderBrush="#FF353535" Background="#FF0A0A0A"/>
         <hc:Card x:Name="MainCard" HorizontalAlignment="Left" Width="175" Margin="10,26,0,26" BorderBrush="#FF353535" Background="#FF0A0A0A"/>
-        <Button x:Name="Settings" hc:BorderElement.CornerRadius="10" Content="Settings" HorizontalAlignment="Right" Margin="0,528,845,0" VerticalAlignment="Top" Height="36" Click="Settings_Click" Visibility="Visible" BorderBrush="{x:Null}" Width="126" Background="#FF1C1C1C"/>
-        <Button x:Name="LaunchGameButton" hc:BorderElement.CornerRadius="10" Content="Launch Game" HorizontalAlignment="Left" Margin="22,0,0,44" VerticalAlignment="Bottom" Visibility="Visible" BorderBrush="{x:Null}" Height="50" Width="150" Foreground="White" FontSize="18" FontFamily="Arial" BorderThickness="1,1,1,1" Background="#FF4300DC">
+        <Button x:Name="Settings" hc:BorderElement.CornerRadius="10" Content="Settings" HorizontalAlignment="Left" Margin="229,0,0,50" VerticalAlignment="Bottom" Height="36" Click="Settings_Click" Visibility="Visible" BorderBrush="{x:Null}" Width="126" Background="#FF1C1C1C">
+            <Button.Effect>
+                <DropShadowEffect BlurRadius="40" Direction="300" Color="Black"/>
+            </Button.Effect>
+        </Button>
+        <Button x:Name="LaunchGameButton" hc:BorderElement.CornerRadius="10" Content="Launch Game" HorizontalAlignment="Left" Margin="22,0,0,44" VerticalAlignment="Bottom" Visibility="Visible" BorderBrush="{x:Null}" Height="50" Width="150" Foreground="White" FontSize="18" FontFamily="Arial" BorderThickness="1,1,1,1" Background="#FF4300DC" Click="LaunchGameButton_Click">
             <Button.Effect>
                 <DropShadowEffect BlurRadius="40" Direction="300" Color="Black"/>
             </Button.Effect>
