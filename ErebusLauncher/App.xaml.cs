@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HandyControl.Controls;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -13,6 +14,16 @@ namespace ErebusLauncher
     /// </summary>
     public partial class App : Application
     {
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            SplashWindow.Init(() =>
+            {
+                SplashWindow splash = new();
+                return splash;
+            });
+            base.OnStartup(e);
+        }
+
         private void ThemeResources_SystemThemeChanged(object sender, HandyControl.Data.FunctionEventArgs<HandyControl.Themes.ThemeManager.SystemTheme> e)
         {
 

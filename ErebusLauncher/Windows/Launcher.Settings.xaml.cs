@@ -22,13 +22,17 @@ namespace ErebusLauncher.Windows
     {
         private LauncherFiles config;
 
-        public Settings()
+        private MainWindow Main;
+
+        public Settings(MainWindow main)
         {
             InitializeComponent();
             InitDarkAndLightBox();
 
             config = new LauncherFiles();
             config.RunChecker();
+
+            Main = main;
 
             var boxUtils = new BoxUtils();
             var colors = boxUtils.GetColors();
@@ -61,10 +65,13 @@ namespace ErebusLauncher.Windows
                 currentTheme = "Dark";
             }
 
+            Main.UpdateTheme(currentTheme);
+
             config.config.Theme = currentTheme;
             config.SaveConfig();
 
-            HandyControl.Controls.Growl.InfoGlobal($"Launcher theme updated to {currentTheme}");
+
+            // HandyControl.Controls.Growl.InfoGlobal($"Launcher theme updated to {currentTheme}");
         }
 
         private void InitDarkAndLightBox()

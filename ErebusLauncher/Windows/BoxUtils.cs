@@ -7,6 +7,7 @@ namespace ErebusLauncher
 {
     class BoxUtils
     {
+
         public List<String> GetColors()
         {
             var currentTheme = new ThemeManager.SystemTheme();

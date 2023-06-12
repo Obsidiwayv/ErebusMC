@@ -11,7 +11,16 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Erebus.Utils", "ErebusLaunc
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Erebus.MojangAPI", "ErebusLauncher\Classes\Erebus.MojangAPI\Erebus.MojangAPI.csproj", "{D21C774A-0D4C-4771-AC6E-04000FE424A0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Obsidi.Jupiter", "ErebusLauncher\Classes\Obsidi.Jupiter\Obsidi.Jupiter.csproj", "{026D5ABF-1786-472D-A422-91CBF02C96AB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Obsidi.Jupiter", "ErebusLauncher\Classes\Obsidi.Jupiter\Obsidi.Jupiter.csproj", "{026D5ABF-1786-472D-A422-91CBF02C96AB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SecureCore", "SecureCore", "{839BE278-5352-4EA8-9D06-7D318F58F700}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SecureCore.Main", "SecureCore\SecureCore.Main\SecureCore.Main.csproj", "{33FF2054-4F3A-47A5-A781-DE14926F6D67}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E126642D-D3EA-4375-988C-A0A3D78A6D5C}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,8 +34,8 @@ Global
 		{502D166C-3309-48AD-9EDC-6D08C993BF7C}.Debug|Any CPU.Build.0 = Debug|x64
 		{502D166C-3309-48AD-9EDC-6D08C993BF7C}.Debug|x64.ActiveCfg = Debug|x64
 		{502D166C-3309-48AD-9EDC-6D08C993BF7C}.Debug|x64.Build.0 = Debug|x64
-		{502D166C-3309-48AD-9EDC-6D08C993BF7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{502D166C-3309-48AD-9EDC-6D08C993BF7C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{502D166C-3309-48AD-9EDC-6D08C993BF7C}.Release|Any CPU.ActiveCfg = Release|x64
+		{502D166C-3309-48AD-9EDC-6D08C993BF7C}.Release|Any CPU.Build.0 = Release|x64
 		{502D166C-3309-48AD-9EDC-6D08C993BF7C}.Release|x64.ActiveCfg = Release|x64
 		{502D166C-3309-48AD-9EDC-6D08C993BF7C}.Release|x64.Build.0 = Release|x64
 		{4713F0B3-E4F1-489B-9606-85C47832F2C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -53,6 +62,14 @@ Global
 		{026D5ABF-1786-472D-A422-91CBF02C96AB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{026D5ABF-1786-472D-A422-91CBF02C96AB}.Release|x64.ActiveCfg = Release|Any CPU
 		{026D5ABF-1786-472D-A422-91CBF02C96AB}.Release|x64.Build.0 = Release|Any CPU
+		{33FF2054-4F3A-47A5-A781-DE14926F6D67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33FF2054-4F3A-47A5-A781-DE14926F6D67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33FF2054-4F3A-47A5-A781-DE14926F6D67}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{33FF2054-4F3A-47A5-A781-DE14926F6D67}.Debug|x64.Build.0 = Debug|Any CPU
+		{33FF2054-4F3A-47A5-A781-DE14926F6D67}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33FF2054-4F3A-47A5-A781-DE14926F6D67}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33FF2054-4F3A-47A5-A781-DE14926F6D67}.Release|x64.ActiveCfg = Release|Any CPU
+		{33FF2054-4F3A-47A5-A781-DE14926F6D67}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -61,6 +78,7 @@ Global
 		{4713F0B3-E4F1-489B-9606-85C47832F2C4} = {CE8628AD-B5D6-489E-B147-E52342F3EFCD}
 		{D21C774A-0D4C-4771-AC6E-04000FE424A0} = {CE8628AD-B5D6-489E-B147-E52342F3EFCD}
 		{026D5ABF-1786-472D-A422-91CBF02C96AB} = {CE8628AD-B5D6-489E-B147-E52342F3EFCD}
+		{33FF2054-4F3A-47A5-A781-DE14926F6D67} = {839BE278-5352-4EA8-9D06-7D318F58F700}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EB9D7EEC-1F30-4E87-9321-6E44CF527C2F}

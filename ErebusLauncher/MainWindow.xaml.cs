@@ -1,5 +1,6 @@
 ﻿using ErebusLauncher.Windows;
 using System.Windows;
+using System.Windows.Media.Animation;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Net;
@@ -12,6 +13,9 @@ using Erebus.Utils;
 using DiscordRPC;
 using Erebus.Utils.Data;
 using System.Linq;
+using System.Windows.Input;
+using HandyControl.Tools;
+using System.Xml.Linq;
 
 namespace ErebusLauncher
 {
@@ -22,7 +26,7 @@ namespace ErebusLauncher
     {
         private LauncherFiles json;
 
-        private DiscordRpcClient client;
+        public DiscordRpcClient client;
 
         private Boolean CanLaunchGame;
 
@@ -30,10 +34,12 @@ namespace ErebusLauncher
 
         public MainWindow()
         {
+            InitializeComponent();
             json = new LauncherFiles();
             ServicePointManager.DefaultConnectionLimit = 512;
-            InitializeComponent();
             json.RunChecker();
+            SetJavaBox();
+            HandyControl.Controls.SplashWindow.Instance.LoadComplete();
 
             var presence = new DiscordPresence();
             client = presence.RunConnection("Looking for a game");
@@ -42,6 +48,7 @@ namespace ErebusLauncher
             {
                 LaunchGameButton.Background = Brushes.LightGray;
                 LaunchGameButton.Foreground = Brushes.Black;
+                CanLaunchGame = false;
             }
 
             CurrentConfig = json.GetLauncherConfigFile();
@@ -54,17 +61,42 @@ namespace ErebusLauncher
 
         }
 
+        private async void SetJavaBox()
+        {
+            HandyControl.Controls.SplashWindow.Instance.AddMessage("Looking for Java Versions.");
+
+            var java = SystemInfoHelper.FindJava();
+            await foreach (var j in java)
+            {
+                ListBoxItem itm = new()
+                {
+                    Content = j
+                };
+
+                JavaVers.Items.Add(itm);
+            }
+        }
+
         public void UpdateTheme(string dol)
         {
+
             if (dol == "Light")
             {
-                MainCard.Background = Brushes.FloralWhite;
                 GameCard.Background = Brushes.FloralWhite;
+                MainCard.Background = Brushes.FloralWhite;
+                GameCard_Extra.BorderBrush = Brushes.Black;
+                GameCard_Extra.Background = Brushes.FloralWhite;
+                MainCard_Username.BorderBrush = Brushes.Black;
+                MainCard_Username.Background = Brushes.FloralWhite;
             }
             else
             {
-                MainCard.Background = Brushes.Black;
                 GameCard.Background = Brushes.Black;
+                MainCard.Background = Brushes.Black;
+                GameCard_Extra.BorderBrush = Brushes.FloralWhite;
+                GameCard_Extra.Background = Brushes.Black;
+                MainCard_Username.BorderBrush = Brushes.FloralWhite;
+                MainCard_Username.Background = Brushes.Black;
             }
         }
 
@@ -73,7 +105,7 @@ namespace ErebusLauncher
 
         private void Settings_Click(object sender, RoutedEventArgs e)
         {
-            var settings = new Settings();
+            var settings = new Settings(this);
             settings.Show();
         }
 
@@ -103,7 +135,25 @@ namespace ErebusLauncher
 
         private void LaunchGameButton_Click(object sender, RoutedEventArgs e)
         {
-            HandyControl.Controls.Growl.Info(SystemInfoHelper.FindJava().ToString());
+            if (!CanLaunchGame)
+            {
+                MessageBox.Show("Minecraft cannot be launched because java is missing.");
+                return;
+            }
+        }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        { }
+
+        private void RefreshUIButton_Click(object sender, RoutedEventArgs e)
+        {
+            var config = json.GetLauncherConfigFile();
+            UpdateTheme(config.Theme);
+        }
+
+        private void Grid_KeyDown(object sender, KeyEventArgs e)
+        {
+
         }
     }
 }
