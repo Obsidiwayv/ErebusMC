@@ -22,6 +22,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Image\VoidBlock-dark.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="Image\VoidBlock-dark.ico" />
   </ItemGroup>
 
@@ -40,6 +44,10 @@
     <ProjectReference Include="Classes\Erebus.MojangAPI\Erebus.MojangAPI.csproj" />
     <ProjectReference Include="Classes\Erebus.Utils\Erebus.Utils.csproj" />
     <ProjectReference Include="Classes\Obsidi.Jupiter\Obsidi.Jupiter.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Image\VoidBlock-dark.png" />
   </ItemGroup>
 
   <ItemGroup>

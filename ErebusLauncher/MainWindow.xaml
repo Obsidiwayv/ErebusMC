@@ -9,10 +9,6 @@
         Title="Erebus Launcher" Height="630" Width="1200"
         WindowState="Maximized">
     <Grid Background="#FF060606">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="71*"/>
-            <RowDefinition Height="52*"/>
-        </Grid.RowDefinitions>
         <hc:Card x:Name="GameCard" Margin="212,26,19,26" BorderBrush="#FF353535" Background="#FF0A0A0A" Grid.RowSpan="2"/>
         <hc:Card x:Name="GameCard_Extra" Margin="212,170,19,26" BorderBrush="White" Background="#FF0A0A0A" Grid.RowSpan="2"/>
         <hc:Card x:Name="MainCard" HorizontalAlignment="Left" Width="175" Margin="10,26,0,26" BorderBrush="#FF353535" Background="#FF0A0A0A" Grid.RowSpan="2"/>
@@ -22,6 +18,7 @@
         <Button x:Name="LaunchGameButton" hc:BorderElement.CornerRadius="10" Content="Launch Game" HorizontalAlignment="Left" Margin="22,0,0,52" VerticalAlignment="Bottom" Visibility="Visible" BorderBrush="{x:Null}" Height="50" Foreground="White" FontSize="18" FontFamily="Arial" BorderThickness="1,1,1,1" Background="#FF4300DC" Click="LaunchGameButton_Click" Width="150" Grid.Row="1"/>
         <Button x:Name="UsernameSubmit" hc:BorderElement.CornerRadius="10" Content="Submit" HorizontalAlignment="Left" Margin="22,82,0,0" VerticalAlignment="Top" Visibility="Visible" BorderBrush="{x:Null}" Width="150" Foreground="White" FontFamily="Arial" BorderThickness="1,1,1,1" Background="#FF4300DC" FontSize="14" Click="UsernameSubmit_Click" Height="28"/>
         <TextBox x:Name="UsernameBox" hc:BorderElement.CornerRadius="10" Margin="22,49,0,0" TextWrapping="Wrap" Width="150" HorizontalAlignment="Left" Height="28" VerticalAlignment="Top" Text="username"/>
-        <ComboBox x:Name="JavaVers" HorizontalAlignment="Left" Margin="38,77,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120"/>
+        <ComboBox x:Name="JavaVers" HorizontalAlignment="Left" Margin="37,0,0,157" Width="120" Height="28" VerticalAlignment="Bottom"/>
+        <Label x:Name="JavaText" Content="Java Path" HorizontalAlignment="Left" Margin="62,0,0,190" VerticalAlignment="Bottom" Background="{x:Null}" BorderBrush="{x:Null}"/>
     </Grid>
 </Window>

@@ -1,5 +1,4 @@
-﻿using HandyControl.Controls;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,7 +17,7 @@ namespace ErebusLauncher
     /// <summary>
     /// Interaction logic for Splash.xaml
     /// </summary>
-    public partial class Splash : HandyControl.Controls.SplashWindow
+    public partial class Splash : Window
     {
         public Splash()
         {

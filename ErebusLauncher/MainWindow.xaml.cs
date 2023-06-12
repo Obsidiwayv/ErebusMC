@@ -16,6 +16,7 @@ using System.Linq;
 using System.Windows.Input;
 using HandyControl.Tools;
 using System.Xml.Linq;
+using System.IO;
 
 namespace ErebusLauncher
 {
@@ -34,12 +35,16 @@ namespace ErebusLauncher
 
         public MainWindow()
         {
+            var splash = new Splash();
+            splash.Show();
+
             InitializeComponent();
             json = new LauncherFiles();
             ServicePointManager.DefaultConnectionLimit = 512;
             json.RunChecker();
             SetJavaBox();
-            HandyControl.Controls.SplashWindow.Instance.LoadComplete();
+
+            splash.Close();
 
             var presence = new DiscordPresence();
             client = presence.RunConnection("Looking for a game");
@@ -61,20 +66,24 @@ namespace ErebusLauncher
 
         }
 
-        private async void SetJavaBox()
+        private void SetJavaBox()
         {
-            HandyControl.Controls.SplashWindow.Instance.AddMessage("Looking for Java Versions.");
 
-            var java = SystemInfoHelper.FindJava();
-            await foreach (var j in java)
+            string docPath = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles);
+            string joined = docPath + "\\java";
+
+            List<string> dirs = new List<string>(Directory.EnumerateDirectories(joined));
+            foreach (var dir in dirs)
             {
                 ListBoxItem itm = new()
                 {
-                    Content = j
+                    Content = $"{dir}\\bin\\java.exe"
                 };
 
                 JavaVers.Items.Add(itm);
             }
+
+
         }
 
         public void UpdateTheme(string dol)
@@ -88,6 +97,7 @@ namespace ErebusLauncher
                 GameCard_Extra.Background = Brushes.FloralWhite;
                 MainCard_Username.BorderBrush = Brushes.Black;
                 MainCard_Username.Background = Brushes.FloralWhite;
+                JavaText.Foreground = Brushes.Black;
             }
             else
             {
@@ -97,6 +107,7 @@ namespace ErebusLauncher
                 GameCard_Extra.Background = Brushes.Black;
                 MainCard_Username.BorderBrush = Brushes.FloralWhite;
                 MainCard_Username.Background = Brushes.Black;
+                JavaText.Foreground = Brushes.FloralWhite;
             }
         }
 
