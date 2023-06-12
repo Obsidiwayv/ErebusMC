@@ -17,6 +17,8 @@ using System.Windows.Input;
 using HandyControl.Tools;
 using System.Xml.Linq;
 using System.IO;
+using System.Threading.Tasks;
+using Erebus.MojangAPI;
 
 namespace ErebusLauncher
 {
@@ -29,9 +31,15 @@ namespace ErebusLauncher
 
         public DiscordRpcClient client;
 
+        private Obsidi.Jupiter.Logger logger;
+
         private Boolean CanLaunchGame;
 
         private UserConfig CurrentConfig;
+
+        private List<String> JavaPaths;
+
+        private List<String> MCVersions;
 
         public MainWindow()
         {
@@ -40,23 +48,38 @@ namespace ErebusLauncher
 
             InitializeComponent();
             json = new LauncherFiles();
+            JavaPaths = new List<String>();
+            MCVersions = new List<String>();
+            logger = new Obsidi.Jupiter.Logger(SystemConfig.DEFAULT_NAME);
+
             ServicePointManager.DefaultConnectionLimit = 512;
             json.RunChecker();
             SetJavaBox();
+            setVersionBox();
 
             splash.Close();
 
             var presence = new DiscordPresence();
             client = presence.RunConnection("Looking for a game");
 
-            if (json.config.JavaVersion == "None" && json.config.GameVersion == "None")
+            CurrentConfig = json.GetLauncherConfigFile();
+
+            if (CurrentConfig.JavaVersion == "None" && CurrentConfig.GameVersion == "None")
             {
-                LaunchGameButton.Background = Brushes.LightGray;
-                LaunchGameButton.Foreground = Brushes.Black;
+                if (CurrentConfig.Theme == "Light")
+                {
+                    LaunchGameButton.Background = Brushes.Black;
+                    LaunchGameButton.Foreground = Brushes.White;
+                } else
+                {
+                    LaunchGameButton.Background = Brushes.White;
+                    LaunchGameButton.Foreground = Brushes.Black;
+                }
                 CanLaunchGame = false;
             }
 
-            CurrentConfig = json.GetLauncherConfigFile();
+            JavaText_2.Content = $"Java Version: {CurrentConfig.JavaVersion}";
+            GameVersion_Text.Content = $"Game Version: {CurrentConfig.GameVersion}";
 
             UpdateTheme(CurrentConfig.Theme);
         }
@@ -66,53 +89,77 @@ namespace ErebusLauncher
 
         }
 
-        private void SetJavaBox()
+        private async void setVersionBox()
         {
-
-            string docPath = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles);
-            string joined = docPath + "\\java";
-
-            List<string> dirs = new List<string>(Directory.EnumerateDirectories(joined));
-            foreach (var dir in dirs)
+            try
             {
-                ListBoxItem itm = new()
-                {
-                    Content = $"{dir}\\bin\\java.exe"
-                };
+                var versions = await Versions.GetVersionJSON();
 
-                JavaVers.Items.Add(itm);
+                logger.StackLog("INFO", "Looping through all known minecraft versions");
+
+                foreach (var version in versions.Versions)
+                {
+                    MCVersions.Add(version.Id);
+                    var versionItem = new ListBoxItem()
+                    {
+                        Content = $"{version.Id}\n{version.Type}"
+                    };
+                    VersionListBox.Items.Add(versionItem);
+                }
+            } catch(Exception e)
+            {
+                logger.StackLog("ERROR", $"Unable to loop due to an error\nA stack has been provided\n\n{e}");
             }
 
+            logger.OutputLogs("Minecraft\\Versions");
+        }
+
+        private void SetJavaBox()
+        {
+            Boolean JavaInSystem = true;
+            string docPath = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles);
+
+            string joined = docPath + "\\java";
+            string Adoptium = docPath + "\\Eclipse Adoptium";
+
+            if (!Directory.Exists(joined) && Directory.Exists(Adoptium))
+            {
+                joined = Adoptium;
+            }
+            else
+            {
+                JavaInSystem = false;
+            }
+
+            if (JavaInSystem)
+            {
+                List<string> dirs = new List<string>(Directory.EnumerateDirectories(joined));
+                foreach (var dir in dirs)
+                {
+                    var content = $"{dir}\\bin\\java.exe";
+
+                    logger.StackLog("INFO", $"found java path: {content}");
+
+                    ListBoxItem itm = new()
+                    {
+                        Content = content
+                    };
+
+                    JavaVers.Items.Add(itm);
+                    JavaPaths.Add(content);
+                }
+                logger.OutputLogs("Java");
+            }
 
         }
 
         public void UpdateTheme(string dol)
         {
-
-            if (dol == "Light")
-            {
-                GameCard.Background = Brushes.FloralWhite;
-                MainCard.Background = Brushes.FloralWhite;
-                GameCard_Extra.BorderBrush = Brushes.Black;
-                GameCard_Extra.Background = Brushes.FloralWhite;
-                MainCard_Username.BorderBrush = Brushes.Black;
-                MainCard_Username.Background = Brushes.FloralWhite;
-                JavaText.Foreground = Brushes.Black;
-            }
-            else
-            {
-                GameCard.Background = Brushes.Black;
-                MainCard.Background = Brushes.Black;
-                GameCard_Extra.BorderBrush = Brushes.FloralWhite;
-                GameCard_Extra.Background = Brushes.Black;
-                MainCard_Username.BorderBrush = Brushes.FloralWhite;
-                MainCard_Username.Background = Brushes.Black;
-                JavaText.Foreground = Brushes.FloralWhite;
-            }
+            ThemeUpdater.Update(dol, this);
         }
 
         private void ThemeResources_SystemThemeChanged(object? sender, FunctionEventArgs<ThemeManager.SystemTheme> e)
-        {}
+        { }
 
         private void Settings_Click(object sender, RoutedEventArgs e)
         {
@@ -127,7 +174,7 @@ namespace ErebusLauncher
             {
                 HandyControl.Controls.Growl.Error("Cannot have an empty username.");
                 return;
-            } 
+            }
             else if (UsernameBox.Text.Length < 3)
             {
                 HandyControl.Controls.Growl.Error("Must have a username longer than 3 characters.");
@@ -165,6 +212,36 @@ namespace ErebusLauncher
         private void Grid_KeyDown(object sender, KeyEventArgs e)
         {
 
+        }
+
+        private void JavaVers_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            String selectedJava = JavaPaths[JavaVers.SelectedIndex];
+            logger.StackLog("INFO", $"user selected java [{selectedJava}]");
+            json.config.JavaVersion = selectedJava;
+            logger.StackLog("INFO", "Saving Java Configuration");
+            json.SaveConfig();
+            JavaText_2.Content = $"Java Version: {selectedJava}";
+
+            MakeInfoNotifcation($"Using java path: {selectedJava}");
+            logger.OutputLogs("Java\\Config");
+        }
+
+        private void MakeInfoNotifcation(String content)
+        {
+            HandyControl.Controls.Growl.Info(content);
+        }
+
+        private void VersionListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var selected = MCVersions[VersionListBox.SelectedIndex];
+            logger.StackLog("INFO", $"user selected Minecraft Version [{selected}]");
+            json.config.JavaVersion = selected;
+            logger.StackLog("INFO", $"Saving Minecraft configuration");
+            json.SaveConfig();
+            GameVersion_Text.Content = $"Game Version: {selected}";
+            MakeInfoNotifcation($"Switched game version to {selected}");
+            logger.OutputLogs("Minecraft\\Configurations");
         }
     }
 }
