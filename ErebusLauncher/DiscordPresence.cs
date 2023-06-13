@@ -1,5 +1,6 @@
 ﻿using DiscordRPC;
 using DiscordRPC.Logging;
+using Erebus.Utils;
 using Obsidi.Jupiter;
 using System;
 using System.Collections.Generic;
@@ -53,12 +54,18 @@ namespace ErebusLauncher
             //Connect to the RPC
             client.Initialize();
 
+            var LargeImage = SystemUtils.IsLightTheme() ? "light" : "dark";
+
             //Set the rich presence
             //Call this as many times as you want and anywhere in your code.
             client.SetPresence(new RichPresence()
             {
                 Details = current,
-                State = "In the launcher"
+                State = "In the launcher",
+                Assets = new Assets()
+                {
+                     LargeImageKey = LargeImage
+                }
             });
 
             return client;

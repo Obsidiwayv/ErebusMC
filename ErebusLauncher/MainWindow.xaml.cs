@@ -27,7 +27,7 @@ namespace ErebusLauncher
     /// </summary>
     public partial class MainWindow : Window
     {
-        private LauncherFiles json;
+        internal LauncherFiles json;
 
         public DiscordRpcClient client;
 
@@ -126,8 +126,10 @@ namespace ErebusLauncher
                 if (Directory.Exists(Adoptium))
                 {
                     joined = Adoptium;
-                };
-                JavaInSystem = false;
+                } else
+                {
+                    JavaInSystem = false;
+                }
             }
 
             if (JavaInSystem)

@@ -15,5 +15,7 @@ namespace Erebus.Utils.Data
         public String GameVersion { get; set; }
 
         public String JavaVersion { get; set; }
+
+        public String DiscordPresence { get; set; }
     }
 }

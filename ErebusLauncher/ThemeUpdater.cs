@@ -1,4 +1,8 @@
-﻿using HandyControl.Controls;
+﻿using Erebus.Utils.Data;
+using ErebusLauncher.Colors;
+using ErebusLauncher.Properties;
+using HandyControl.Controls;
+using HandyControl.Themes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,5 +42,35 @@ namespace ErebusLauncher
                 main.VersionListBox.BorderBrush = Brushes.FloralWhite;
             }
         }
+
+        public static void UpdateAccents(MainWindow main, Settings settings)
+        {
+            UserConfig config = main.json.GetLauncherConfigFile();
+            String color = config.ThemeColor;
+            Brush brushColor;
+
+            if (color == "Galaxy")
+            {
+                brushColor = ConvertColor(DarkModeColors.Galaxy);
+                UpdateGlobalColors(main, settings, brushColor);
+            } else
+            {
+                brushColor = ConvertColor(LightModeColors.White);
+                UpdateGlobalColors(main, settings, brushColor);
+            }
+
+            ThemeManager.Current.AccentColor = brushColor;
+        }
+        
+        private static Brush ConvertColor(String hex)
+        {
+            return (Brush)new BrushConverter().ConvertFrom(hex);
+        }
+        private static void UpdateGlobalColors(MainWindow main, Settings settings, Brush color)
+        {
+            main.LaunchGameButton.Background = color;
+            main.UsernameSubmit.Background = color;
+        }
+
     }
 }

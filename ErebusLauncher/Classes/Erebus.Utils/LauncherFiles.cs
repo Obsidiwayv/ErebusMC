@@ -25,7 +25,8 @@ namespace Erebus.Utils
                 GameVersion = "None",
                 JavaVersion = "None",
                 Theme = "Dark",
-                ThemeColor = "Galaxy"
+                ThemeColor = "Galaxy",
+                DiscordPresence = "Enabled"
             };
 
             Directory.CreateDirectory(GetLauncherDataFolderPath());
