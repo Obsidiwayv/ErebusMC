@@ -9,11 +9,16 @@
         ResizeMode="CanMinimize">
     <Grid Background="#FF060606">
         <StackPanel/>
-        <Canvas>
-            <ComboBox x:Name="ColorBox" Canvas.Left="106" Canvas.Top="25" Width="120" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.975,0.484" SelectionChanged="ColorBox_SelectionChanged"/>
-            <ComboBox x:Name="ThemeBox" Canvas.Left="106" Canvas.Top="98" Width="120" HorizontalAlignment="Left" VerticalAlignment="Center" SelectionChanged="ThemeBox_SelectionChanged"/>
-            <Label Content="Theme" Canvas.Left="29" Canvas.Top="98" HorizontalAlignment="Left" VerticalAlignment="Top" BorderBrush="{x:Null}" Background="{x:Null}"/>
-            <Label Content="Color" Canvas.Left="29" Canvas.Top="25" VerticalAlignment="Top" BorderBrush="{x:Null}" Background="{x:Null}"/>
+        <Canvas Background="Black">
+            <ComboBox x:Name="ColorBox" Canvas.Left="106" Canvas.Top="55" Width="120" HorizontalAlignment="Center" VerticalAlignment="Top" RenderTransformOrigin="0.975,0.484" SelectionChanged="ColorBox_SelectionChanged"/>
+            <ComboBox x:Name="ThemeBox" Canvas.Left="106" Canvas.Top="153" Width="120" HorizontalAlignment="Center" VerticalAlignment="Top" SelectionChanged="ThemeBox_SelectionChanged"/>
+            <Label Content="Theme" Canvas.Left="29" Canvas.Top="153" VerticalAlignment="Top" BorderBrush="{x:Null}" Background="{x:Null}"/>
+            <Label Content="Color" Canvas.Left="29" Canvas.Top="55" VerticalAlignment="Top" BorderBrush="{x:Null}" Background="{x:Null}"/>
+            <Label Content="Erebus Launcher by Obsidiwayv" Canvas.Left="245" Canvas.Top="102" Background="{x:Null}" FontFamily="Leelawadee UI" FontSize="14" Height="128" Width="245" VerticalAlignment="Top" BorderBrush="{x:Null}" Foreground="White">
+                <Label.Effect>
+                    <DropShadowEffect Color="White" BlurRadius="40" ShadowDepth="0"/>
+                </Label.Effect>
+            </Label>
         </Canvas>
     </Grid>
 </Window>

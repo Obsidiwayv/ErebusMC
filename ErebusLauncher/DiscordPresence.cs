@@ -15,9 +15,8 @@ namespace ErebusLauncher
 
         private Boolean HasFailed;
 
-        public DiscordRpcClient RunConnection(string current)
+        public DiscordRpcClient RunConnection(string current, MainWindow main)
         {
-            Logger logger = new(SystemConfig.DEFAULT_NAME);
 
             client = new DiscordRPC.DiscordRpcClient(SystemConfig.APPID);
 
@@ -29,7 +28,7 @@ namespace ErebusLauncher
             client.OnReady += (sender, e) =>
             {
                 Console.WriteLine("Received Ready from user {0}", e.User.Username);
-                logger.StackLog("INFO", $"presence ready on {e.User.Username}");
+                main.logger.StackLog($"presence ready on {e.User.Username}");
             };
 
             client.OnConnectionFailed += (sender, e) =>
@@ -37,9 +36,10 @@ namespace ErebusLauncher
                 Console.WriteLine("Discord is potentialy not running... continuing without it");
                 if (!this.HasFailed)
                 {
-                    logger.StackLog("WARN", "Cannot connect to discord, is the application open?");
-                    logger.StackLog("INFO", "continuing without rich presence");
-                    logger.OutputLogs("Discord");
+                    main.logger.StackLog("Cannot connect to discord, is the application open?");
+                    main.logger.StackLog("continuing without rich presence");
+                    main.logger.StackLog($"Discord Stack:\n>> {e} <<");
+                    main.logger.StackLine();
                     this.HasFailed = true;
                 }
             };
@@ -47,8 +47,7 @@ namespace ErebusLauncher
             client.OnPresenceUpdate += (sender, e) =>
             {
                 Console.WriteLine("Received Update! {0}", e.Presence);
-                logger.StackLog("INFO", $"Presence update, {e.Presence}");
-                logger.OutputLogs("Discord");
+                main.logger.StackLog($"Presence update, {e.Presence}");
             };
 
             //Connect to the RPC

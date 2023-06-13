@@ -31,7 +31,7 @@ namespace ErebusLauncher
 
         public DiscordRpcClient client;
 
-        private Obsidi.Jupiter.Logger logger;
+        internal Obsidi.Jupiter.Logger logger;
 
         private Boolean CanLaunchGame;
 
@@ -60,7 +60,7 @@ namespace ErebusLauncher
             splash.Close();
 
             var presence = new DiscordPresence();
-            client = presence.RunConnection("Looking for a game");
+            client = presence.RunConnection("Looking for a game", this);
 
             CurrentConfig = json.GetLauncherConfigFile();
 
@@ -95,7 +95,7 @@ namespace ErebusLauncher
             {
                 var versions = await Versions.GetVersionJSON();
 
-                logger.StackLog("INFO", "Looping through all known minecraft versions");
+                logger.StackLog("Looping through all known minecraft versions");
 
                 foreach (var version in versions.Versions)
                 {
@@ -108,10 +108,9 @@ namespace ErebusLauncher
                 }
             } catch(Exception e)
             {
-                logger.StackLog("ERROR", $"Unable to loop due to an error\nA stack has been provided\n\n{e}");
+                logger.StackLog($"Unable to loop due to an error\nA stack has been provided{e}");
+                logger.StackLine();
             }
-
-            logger.OutputLogs("Minecraft\\Versions");
         }
 
         private void SetJavaBox()
@@ -122,12 +121,12 @@ namespace ErebusLauncher
             string joined = docPath + "\\java";
             string Adoptium = docPath + "\\Eclipse Adoptium";
 
-            if (!Directory.Exists(joined) && Directory.Exists(Adoptium))
+            if (!Directory.Exists(joined))
             {
-                joined = Adoptium;
-            }
-            else
-            {
+                if (Directory.Exists(Adoptium))
+                {
+                    joined = Adoptium;
+                };
                 JavaInSystem = false;
             }
 
@@ -138,7 +137,7 @@ namespace ErebusLauncher
                 {
                     var content = $"{dir}\\bin\\java.exe";
 
-                    logger.StackLog("INFO", $"found java path: {content}");
+                    logger.StackLog($"found java path: {content}");
 
                     ListBoxItem itm = new()
                     {
@@ -148,7 +147,6 @@ namespace ErebusLauncher
                     JavaVers.Items.Add(itm);
                     JavaPaths.Add(content);
                 }
-                logger.OutputLogs("Java");
             }
 
         }
@@ -217,14 +215,13 @@ namespace ErebusLauncher
         private void JavaVers_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             String selectedJava = JavaPaths[JavaVers.SelectedIndex];
-            logger.StackLog("INFO", $"user selected java [{selectedJava}]");
+            logger.StackLog($"user selected java [{selectedJava}]");
             json.config.JavaVersion = selectedJava;
-            logger.StackLog("INFO", "Saving Java Configuration");
+            logger.StackLog("Saving Java Configuration");
             json.SaveConfig();
             JavaText_2.Content = $"Java Version: {selectedJava}";
 
             MakeInfoNotifcation($"Using java path: {selectedJava}");
-            logger.OutputLogs("Java\\Config");
         }
 
         private void MakeInfoNotifcation(String content)
@@ -235,13 +232,12 @@ namespace ErebusLauncher
         private void VersionListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var selected = MCVersions[VersionListBox.SelectedIndex];
-            logger.StackLog("INFO", $"user selected Minecraft Version [{selected}]");
-            json.config.JavaVersion = selected;
-            logger.StackLog("INFO", $"Saving Minecraft configuration");
+            logger.StackLog($"user selected Minecraft Version [{selected}]");
+            json.config.GameVersion  = selected;
+            logger.StackLog($"Saving Minecraft configuration");
             json.SaveConfig();
             GameVersion_Text.Content = $"Game Version: {selected}";
             MakeInfoNotifcation($"Switched game version to {selected}");
-            logger.OutputLogs("Minecraft\\Configurations");
         }
     }
 }
