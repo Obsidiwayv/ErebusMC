@@ -118,14 +118,29 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="Cabin" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Wallpapers\Cabin.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="CabinUpstairs" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Wallpapers\CabinUpstairs.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="CabinView" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Wallpapers\CabinView.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="craftingtable" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Image\MCIcons\craftingtable.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="fabric" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Image\MCIcons\fabric.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Forest" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Wallpapers\Forest.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="forge" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Image\MCIcons\forge.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Kitchen" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Wallpapers\Kitchen.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="optifine" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Image\MCIcons\optifine.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

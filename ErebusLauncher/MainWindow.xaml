@@ -7,24 +7,18 @@
         mc:Ignorable="d"
         xmlns:fa="http://schemas.fontawesome.io/icons/"
         Title="Erebus Launcher" Height="630" Width="1200"
-        WindowState="Maximized">
-    <Grid x:Name="MainGrid" Background="#FF151515">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="161*"/>
-            <ColumnDefinition Width="139*"/>
-        </Grid.ColumnDefinitions>
-        <hc:Card x:Name="GameCard" Margin="212,216,19,26" BorderBrush="#FF353535" Background="#FF0A0A0A" Grid.ColumnSpan="2"/>
-        <hc:Card x:Name="GameCard_Extra" Margin="212,26,19,0" BorderBrush="White" Background="#FF0A0A0A" Grid.ColumnSpan="2" Height="153" VerticalAlignment="Top"/>
-        <hc:Card x:Name="MainCard" HorizontalAlignment="Left" Width="175" Margin="10,26,0,26" BorderBrush="#FF353535" Background="#FF0A0A0A"/>
-        <hc:Card x:Name="MainCard_Username" HorizontalAlignment="Left" Width="175" Margin="10,0,0,26" BorderBrush="White" Background="#FF0A0A0A" Height="103" VerticalAlignment="Bottom" Visibility="Hidden"/>
-        <Button x:Name="Settings" hc:BorderElement.CornerRadius="10" Content="Settings" HorizontalAlignment="Left" Margin="34,151,0,0" VerticalAlignment="Top" Click="Settings_Click" Visibility="Visible" BorderBrush="{x:Null}" Background="#FF1C1C1C" Width="126" Height="28"/>
-        <Button x:Name="LaunchGameButton" hc:BorderElement.CornerRadius="10" Content="Launch Game" HorizontalAlignment="Left" Margin="22,0,0,52" VerticalAlignment="Bottom" Visibility="Visible" BorderBrush="{x:Null}" Height="50" Foreground="White" FontSize="18" FontFamily="Arial" BorderThickness="1,1,1,1" Background="#FF4300DC" Click="LaunchGameButton_Click" Width="150"/>
-        <Button x:Name="UsernameSubmit" hc:BorderElement.CornerRadius="10" Content="Submit" HorizontalAlignment="Left" Margin="22,102,0,0" VerticalAlignment="Top" Visibility="Visible" BorderBrush="{x:Null}" Width="150" Foreground="White" FontFamily="Arial" BorderThickness="1,1,1,1" Background="#FF4300DC" FontSize="14" Click="UsernameSubmit_Click" Height="28"/>
-        <TextBox x:Name="UsernameBox" hc:BorderElement.CornerRadius="10" Margin="22,49,0,0" TextWrapping="Wrap" Width="150" HorizontalAlignment="Left" Height="28" VerticalAlignment="Top" Text="username"/>
-        <ComboBox x:Name="JavaVers" HorizontalAlignment="Left" Margin="37,0,0,120" Width="120" Height="28" VerticalAlignment="Bottom" SelectionChanged="JavaVers_SelectionChanged"/>
-        <Label x:Name="JavaText" Content="Java Path" HorizontalAlignment="Left" Margin="62,0,0,148" VerticalAlignment="Bottom" Background="{x:Null}" BorderBrush="{x:Null}" Height="42" FontFamily="Leelawadee UI"/>
-        <Label x:Name="JavaText_2" Content="There is no path here" HorizontalAlignment="Stretch" Margin="232,0,479,38" VerticalAlignment="Bottom" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="16" FontFamily="Leelawadee UI" Height="41" HorizontalContentAlignment="Left" Grid.ColumnSpan="2"/>
-        <Label x:Name="GameVersion_Text" Content="There is no game here" HorizontalAlignment="Stretch" Margin="232,75,479,0" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="16" FontFamily="Leelawadee UI" Height="39" HorizontalContentAlignment="Left" Grid.ColumnSpan="2"/>
-        <ListBox x:Name="VersionListBox" Margin="352,216,19,26" Grid.Column="1" Background="{x:Null}" BorderBrush="White" SelectionChanged="VersionListBox_SelectionChanged"/>
+        WindowState="Maximized" ResizeMode="CanMinimize">
+    <Grid x:Name="MainGrid">
+        <Grid Margin="-67,-52,-73,-47">
+            <Grid.Background>
+                <ImageBrush ImageSource="/Wallpapers/Cabin.png" TileMode="None" Stretch="None"/>
+            </Grid.Background>
+            <Grid.Effect>
+                <BlurEffect Radius="25"/>
+            </Grid.Effect>
+        </Grid>
+
+        <hc:Card HorizontalAlignment="Right" Margin="0,499,36,38" Width="1128" Background="#7F0E0E0E" BorderBrush="{x:Null}" Foreground="White"/>
+        <Button Content="Start Game" HorizontalAlignment="Right" Margin="0,0,57,58" VerticalAlignment="Bottom" RenderTransformOrigin="1.527,-4.999" Width="148" Height="36" Background="#FF4E00FF" BorderBrush="{x:Null}" FontSize="14" FontFamily="Arial"/>
     </Grid>
 </Window>

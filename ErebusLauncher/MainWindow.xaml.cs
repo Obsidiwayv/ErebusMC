@@ -68,18 +68,18 @@ namespace ErebusLauncher
             {
                 if (CurrentConfig.Theme == "Light")
                 {
-                    LaunchGameButton.Background = Brushes.Black;
-                    LaunchGameButton.Foreground = Brushes.White;
+                    //LaunchGameButton.Background = Brushes.Black;
+                    //LaunchGameButton.Foreground = Brushes.White;
                 } else
                 {
-                    LaunchGameButton.Background = Brushes.White;
-                    LaunchGameButton.Foreground = Brushes.Black;
+                    //LaunchGameButton.Background = Brushes.White;
+                    //LaunchGameButton.Foreground = Brushes.Black;
                 }
                 CanLaunchGame = false;
             }
 
-            JavaText_2.Content = $"Java Version: {CurrentConfig.JavaVersion}";
-            GameVersion_Text.Content = $"Game Version: {CurrentConfig.GameVersion}";
+            //JavaText_2.Content = $"Java Version: {CurrentConfig.JavaVersion}";
+            //GameVersion_Text.Content = $"Game Version: {CurrentConfig.GameVersion}";
 
             UpdateTheme(CurrentConfig.Theme);
         }
@@ -104,7 +104,7 @@ namespace ErebusLauncher
                     {
                         Content = $"{version.Id}\n{version.Type}"
                     };
-                    VersionListBox.Items.Add(versionItem);
+                    //VersionListBox.Items.Add(versionItem);
                 }
             } catch(Exception e)
             {
@@ -146,7 +146,7 @@ namespace ErebusLauncher
                         Content = content
                     };
 
-                    JavaVers.Items.Add(itm);
+                    //JavaVers.Items.Add(itm);
                     JavaPaths.Add(content);
                 }
             }
@@ -170,25 +170,25 @@ namespace ErebusLauncher
         private void UsernameSubmit_Click(object sender, RoutedEventArgs e)
         {
 
-            if (UsernameBox.Text.Length == 0)
-            {
+            //if (UsernameBox.Text.Length == 0)
+            //{
                 HandyControl.Controls.Growl.Error("Cannot have an empty username.");
-                return;
-            }
-            else if (UsernameBox.Text.Length < 3)
-            {
+            //    return;
+            //}
+            //else if (UsernameBox.Text.Length < 3)
+            //{
                 HandyControl.Controls.Growl.Error("Must have a username longer than 3 characters.");
-                return;
-            }
-            else if (UsernameBox.Text.Length > 16)
-            {
+            //    return;
+            //}
+            //else if (UsernameBox.Text.Length > 16)
+            //{
                 HandyControl.Controls.Growl.Error("Username must not be longer than 16.");
-                return;
-            }
+            //    return;
+            //}
 
-            json.data.Name = UsernameBox.Text;
+            //json.data.Name = UsernameBox.Text;
             json.SaveData();
-            HandyControl.Controls.Growl.Success($"Updated username to {UsernameBox.Text}");
+            //HandyControl.Controls.Growl.Success($"Updated username to {UsernameBox.Text}");
         }
 
         private void LaunchGameButton_Click(object sender, RoutedEventArgs e)
@@ -216,12 +216,12 @@ namespace ErebusLauncher
 
         private void JavaVers_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            String selectedJava = JavaPaths[JavaVers.SelectedIndex];
+            String selectedJava = JavaPaths[0];
             logger.StackLog($"user selected java [{selectedJava}]");
             json.config.JavaVersion = selectedJava;
             logger.StackLog("Saving Java Configuration");
             json.SaveConfig();
-            JavaText_2.Content = $"Java Version: {selectedJava}";
+            //JavaText_2.Content = $"Java Version: {selectedJava}";
 
             MakeInfoNotifcation($"Using java path: {selectedJava}");
         }
@@ -233,12 +233,12 @@ namespace ErebusLauncher
 
         private void VersionListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var selected = MCVersions[VersionListBox.SelectedIndex];
+            var selected = MCVersions[0];
             logger.StackLog($"user selected Minecraft Version [{selected}]");
             json.config.GameVersion  = selected;
             logger.StackLog($"Saving Minecraft configuration");
             json.SaveConfig();
-            GameVersion_Text.Content = $"Game Version: {selected}";
+            //GameVersion_Text.Content = $"Game Version: {selected}";
             MakeInfoNotifcation($"Switched game version to {selected}");
         }
     }

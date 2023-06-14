@@ -22,7 +22,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Cabin.png" />
     <None Remove="Image\VoidBlock-dark.png" />
+    <None Remove="Wallpapers\Cabin.png" />
+    <None Remove="Wallpapers\CabinUpstairs.png" />
+    <None Remove="Wallpapers\CabinView.png" />
+    <None Remove="Wallpapers\Forest.png" />
+    <None Remove="Wallpapers\Kitchen.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -34,6 +40,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="CmlLib.Core" Version="3.3.6" />
     <PackageReference Include="DiscordRichPresence" Version="1.1.3.18" />
     <PackageReference Include="HandyControls" Version="3.4.5" />
     <PackageReference Include="NewId" Version="4.0.1" />
@@ -48,7 +55,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Cabin.png" />
     <Resource Include="Image\VoidBlock-dark.png" />
+    <Resource Include="Wallpapers\Cabin.png" />
+    <Resource Include="Wallpapers\CabinUpstairs.png" />
+    <Resource Include="Wallpapers\CabinView.png" />
+    <Resource Include="Wallpapers\Forest.png" />
+    <Resource Include="Wallpapers\Kitchen.png" />
   </ItemGroup>
 
   <ItemGroup>
