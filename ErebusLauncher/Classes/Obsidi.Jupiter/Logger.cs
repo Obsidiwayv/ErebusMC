@@ -11,16 +11,28 @@ namespace Obsidi.Jupiter
 
         private String ID;
 
-        public Logger(string foldername)
+        private Boolean DevMode;
+
+        public Logger(string foldername, Boolean dev)
         {
             fs = new LogFolder(foldername);
 
             ID = NewId.Next().ToString("D").ToUpperInvariant();
+
+            DevMode = dev;
         }
 
         public void StackLog(string message)
         {
             OutputLogs($"{message}\n");
+        }
+
+        public void DevStackLog(string message)
+        {
+            if (DevMode)
+            {
+                OutputLogs($"{message}\n");
+            }
         }
 
         public void StackLine()

@@ -1,6 +1,8 @@
-﻿using Erebus.Utils;
+﻿using Erebus.MojangAPI;
+using Erebus.Utils;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,71 +26,148 @@ namespace ErebusLauncher.Windows
 
         private MainWindow Main;
 
+        private List<String> JavaPaths;
+
+        private List<String> MCVersions;
+
+        private List<String> ColorLists;
+
         public Settings(MainWindow main)
         {
             InitializeComponent();
-            InitDarkAndLightBox();
 
             config = new LauncherFiles();
             config.RunChecker();
 
+            ColorLists = new List<string>();
+
+            JavaPaths = new List<String>();
+
+            MCVersions = new List<String>();
+
             Main = main;
+
+            SetJavaBox();
+            SetVersionBox();
 
             var boxUtils = new BoxUtils();
             var colors = boxUtils.GetColors();
+            main.logger.StackLog(colors.Count.ToString());
             for (int i = 0; i < colors.Count; i++)
             {
                 var color = colors[i];
+                main.logger.DevStackLog($"Added color {color}");
                 ListBoxItem itm = new()
                 {
                     Content = color
                 };
 
+                ColorLists.Add(color);
                 ColorBox.Items.Add(itm);
             }
         }
 
+        private void MakeInfoNotifcation(String content)
+        {
+            HandyControl.Controls.Growl.Info(content);
+        }
+
+        private void JavaVers_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            String selectedJava = JavaPaths[JavaBox.SelectedIndex];
+            Main.logger.StackLog($"user selected java [{selectedJava}]");
+            Main.json.config.JavaVersion = selectedJava;
+            Main.logger.StackLog("Saving Java Configuration");
+            Main.json.SaveConfig();
+            MakeInfoNotifcation($"Using java path: {selectedJava}");
+            Main.JavaPath.Content = $"Java Path: {selectedJava}";
+        }
+
+        private void VersionListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var selected = MCVersions[GameVersionBox.SelectedIndex];
+            Main.logger.StackLog($"user selected Minecraft Version [{selected}]");
+            Main.json.config.GameVersion = selected;
+            Main.logger.StackLog($"Saving Minecraft configuration");
+            Main.json.SaveConfig();
+            Main.GameVersion.Content = $"Game Version: {selected}";
+            MakeInfoNotifcation($"Switched game version to {selected}");
+        }
+
         private void ColorBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            Main.logger.StackLog($"Selected color: {ColorLists[ColorBox.SelectedIndex]}");
+            var selection = ColorLists[ColorBox.SelectedIndex];
+            Main.json.config.ThemeColor = selection;
+            Main.json.SaveConfig();
 
+            ThemeUpdater.UpdateAccents(Main, false, selection);
         }
 
-        private void ThemeBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private async void SetVersionBox()
         {
-            String currentTheme = "";
+            try
+            {
+                var versions = await Versions.GetVersionJSON();
 
-            if (ThemeBox.SelectedItem.ToString() == "System.Windows.Controls.ListBoxItem: Light")
+                Main.logger.StackLog("Looping through all known minecraft versions");
+
+                foreach (var version in versions.Versions)
+                {
+                    var versionItem = new ListBoxItem()
+                    {
+                        Content = version.Id
+                    };
+                    MCVersions.Add(version.Id);
+                    GameVersionBox.Items.Add(versionItem);
+                }
+            }
+            catch (Exception e)
             {
-                currentTheme = "Light";
-            } else
+                Main.logger.StackLog($"Unable to loop due to an error\nA stack has been provided{e}");
+                Main.logger.StackLine();
+            }
+        }
+
+        private void SetJavaBox()
+        {
+            Boolean JavaInSystem = true;
+            string docPath = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles);
+
+            string joined = docPath + "\\java";
+            string Adoptium = docPath + "\\Eclipse Adoptium";
+
+            if (!Directory.Exists(joined))
             {
-                currentTheme = "Dark";
+                if (Directory.Exists(Adoptium))
+                {
+                    joined = Adoptium;
+                }
+                else
+                {
+                    JavaInSystem = false;
+                }
             }
 
-            Main.UpdateTheme(currentTheme);
-
-            config.config.Theme = currentTheme;
-            config.SaveConfig();
-
-
-            // HandyControl.Controls.Growl.InfoGlobal($"Launcher theme updated to {currentTheme}");
-        }
-
-        private void InitDarkAndLightBox()
-        {
-            ListBoxItem dark = new()
+            if (JavaInSystem)
             {
-                Content = "Dark"
-            };
+                List<string> dirs = new List<string>(Directory.EnumerateDirectories(joined));
+                foreach (var dir in dirs)
+                {
+                    var content = $"{dir}\\bin\\java.exe";
 
-            ListBoxItem light = new()
-            {
-                Content = "Light"
-            };
+                    Main.logger.StackLog($"found java path: {content}");
 
-            ThemeBox.Items.Add(light);
+                    ListBoxItem itm = new()
+                    {
+                        Content = content
+                    };
 
-            ThemeBox.Items.Add(dark);
+                    JavaPaths.Add(content);
+                    JavaBox.Items.Add(itm);
+                }
+            }
+
         }
     }
 }

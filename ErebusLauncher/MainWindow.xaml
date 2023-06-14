@@ -7,18 +7,63 @@
         mc:Ignorable="d"
         xmlns:fa="http://schemas.fontawesome.io/icons/"
         Title="Erebus Launcher" Height="630" Width="1200"
-        WindowState="Maximized" ResizeMode="CanMinimize">
+        WindowState="Maximized">
     <Grid x:Name="MainGrid">
-        <Grid Margin="-67,-52,-73,-47">
+        <Grid x:Name="BackgroundGrid" Margin="-67,-52,-73,-47" Grid.ColumnSpan="2" SnapsToDevicePixels="True">
             <Grid.Background>
-                <ImageBrush ImageSource="/Wallpapers/Cabin.png" TileMode="None" Stretch="None"/>
+                <ImageBrush ImageSource="/Wallpapers/Forest.png" TileMode="None" Stretch="None"/>
             </Grid.Background>
             <Grid.Effect>
                 <BlurEffect Radius="25"/>
             </Grid.Effect>
         </Grid>
-
-        <hc:Card HorizontalAlignment="Right" Margin="0,499,36,38" Width="1128" Background="#7F0E0E0E" BorderBrush="{x:Null}" Foreground="White"/>
-        <Button Content="Start Game" HorizontalAlignment="Right" Margin="0,0,57,58" VerticalAlignment="Bottom" RenderTransformOrigin="1.527,-4.999" Width="148" Height="36" Background="#FF4E00FF" BorderBrush="{x:Null}" FontSize="14" FontFamily="Arial"/>
+        <hc:Card x:Name="BottomCard_Light" Margin="36,0,36,38" Background="#7FFFFFFF" BorderBrush="{x:Null}" Foreground="White" Grid.ColumnSpan="2" Height="77" VerticalAlignment="Bottom" Visibility="Hidden"/>
+        <hc:Card x:Name="BottomCard_Dark" Margin="36,0,36,38" Background="#7F0E0E0E" BorderBrush="{x:Null}" Foreground="White" Grid.ColumnSpan="2" Height="77" VerticalAlignment="Bottom"/>
+        <Button x:Name="LaunchGame" Content="Start Game" HorizontalAlignment="Right" Margin="0,0,56,56" VerticalAlignment="Bottom" RenderTransformOrigin="1.527,-4.999" Background="#FF4E00FF" BorderBrush="{x:Null}" FontSize="14" FontFamily="Arial" Height="40" Width="148" Grid.Column="1">
+            <Button.Effect>
+                <DropShadowEffect ShadowDepth="0" BlurRadius="25" Opacity="0.5"/>
+            </Button.Effect>
+        </Button>
+        <ComboBox IsEditable="False" x:Name="ThemeBox" Text="Theme" VerticalAlignment="Top" BorderBrush="White" Background="{x:Null}" SelectionChanged="ThemeBox_SelectionChanged" FontSize="14" FontFamily="Arial" Margin="57,41,0,0" HorizontalAlignment="Left" Width="107">
+            <ComboBox.Effect>
+                <DropShadowEffect ShadowDepth="0" BlurRadius="25"/>
+            </ComboBox.Effect>
+        </ComboBox>
+        <Button x:Name="SettingsButton" Click="Settings_Click" Content="Settings" HorizontalAlignment="Left" Margin="57,0,0,56" VerticalAlignment="Bottom" RenderTransformOrigin="1.527,-4.999" Background="#FF4E00FF" BorderBrush="{x:Null}" FontSize="14" FontFamily="Arial" Height="40" Width="107">
+            <Button.Effect>
+                <DropShadowEffect ShadowDepth="0" BlurRadius="25" Opacity="0.5"/>
+            </Button.Effect>
+        </Button>
+        <Button x:Name="UsernameSubmit" Click="UsernameSubmit_Click" Content="Submit" HorizontalAlignment="Right" Margin="0,41,56,0" VerticalAlignment="Top" RenderTransformOrigin="1.527,-4.999" Background="{x:Null}" BorderBrush="White" FontFamily="Arial" Width="89" Height="28" FontSize="11">
+            <Button.Effect>
+                <DropShadowEffect ShadowDepth="0" BlurRadius="25" Opacity="0.5"/>
+            </Button.Effect>
+        </Button>
+        <TextBox x:Name="UsernameBox" HorizontalAlignment="Right" Margin="0,41,150,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Background="{x:Null}" BorderBrush="White"/>
+        <Label Content="Theme" HorizontalAlignment="Left" Margin="57,8,0,0" VerticalAlignment="Top" Width="107" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="14" FontFamily="Arial">
+            <Label.Effect>
+                <DropShadowEffect ShadowDepth="0" BlurRadius="25"/>
+            </Label.Effect>
+        </Label>
+        <Label Content="Username" HorizontalAlignment="Right" Margin="0,8,156,0" VerticalAlignment="Top" Width="108" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="14" FontFamily="Arial">
+            <Label.Effect>
+                <DropShadowEffect ShadowDepth="0" BlurRadius="25"/>
+            </Label.Effect>
+        </Label>
+        <Label x:Name="JavaPath" Content="[Java Path]" HorizontalAlignment="Left" Margin="36,0,0,120" VerticalAlignment="Bottom" Width="567" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="14" FontFamily="Arial" Height="28" HorizontalContentAlignment="Left" Foreground="White">
+            <Label.Effect>
+                <DropShadowEffect ShadowDepth="0" BlurRadius="25"/>
+            </Label.Effect>
+        </Label>
+        <Label x:Name="GameVersion" Content="[Game Version]" HorizontalAlignment="Right" Margin="0,0,36,120" VerticalAlignment="Bottom" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="14" FontFamily="Arial" Height="28" Width="383" Foreground="White" HorizontalContentAlignment="Right">
+            <Label.Effect>
+                <DropShadowEffect ShadowDepth="0" BlurRadius="25"/>
+            </Label.Effect>
+        </Label>
+        <Label x:Name="LauncherVer" Content="[Launcher Version]" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="220" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="14" FontFamily="Arial" Foreground="#33FFFFFF" HorizontalContentAlignment="Right">
+            <Label.Effect>
+                <DropShadowEffect ShadowDepth="0" BlurRadius="25"/>
+            </Label.Effect>
+        </Label>
     </Grid>
 </Window>

@@ -22,7 +22,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="Cabin.png" />
     <None Remove="Image\VoidBlock-dark.png" />
     <None Remove="Wallpapers\Cabin.png" />
     <None Remove="Wallpapers\CabinUpstairs.png" />
@@ -55,13 +54,22 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Cabin.png" />
     <Resource Include="Image\VoidBlock-dark.png" />
-    <Resource Include="Wallpapers\Cabin.png" />
-    <Resource Include="Wallpapers\CabinUpstairs.png" />
-    <Resource Include="Wallpapers\CabinView.png" />
-    <Resource Include="Wallpapers\Forest.png" />
-    <Resource Include="Wallpapers\Kitchen.png" />
+    <Resource Include="Wallpapers\Cabin.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Wallpapers\CabinUpstairs.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Wallpapers\CabinView.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Wallpapers\Forest.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Wallpapers\Kitchen.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
   <ItemGroup>
@@ -86,19 +94,19 @@
 
   <ItemGroup>
     <None Update="Image\MCIcons\craftingtable.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </None>
     <None Update="Image\MCIcons\fabric.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </None>
     <None Update="Image\MCIcons\forge.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </None>
     <None Update="Image\MCIcons\optifine.gif">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </None>
     <None Update="Image\MCIcons\quilt.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </None>
     <None Update="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

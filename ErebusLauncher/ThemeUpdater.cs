@@ -1,8 +1,8 @@
 ﻿using Erebus.Utils.Data;
-using ErebusLauncher.Colors;
-using ErebusLauncher.Properties;
+using ErebusLauncher.Windows;
 using HandyControl.Controls;
 using HandyControl.Themes;
+using HandyControl.Tools.Extension;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,26 +17,44 @@ namespace ErebusLauncher
         public static void Update(String theme, MainWindow main) {
             if (theme == "Light")
             {
+                main.BottomCard_Dark.Hide();
+                main.BottomCard_Light.Show();
             }
             else
             {
+                main.BottomCard_Dark.Show();
+                main.BottomCard_Light.Hide();
             }
         }
 
-        public static void UpdateAccents(MainWindow main, Settings settings)
+        public static void UpdateAccents(MainWindow main, bool useConfig, String? uColor)
         {
-            UserConfig config = main.json.GetLauncherConfigFile();
-            String color = config.ThemeColor;
+            String color;
+            main.logger.StackLog("Theme: Updating accent colors to what selected");
+            
+            if (useConfig)
+            {
+                UserConfig config = main.json.GetLauncherConfigFile();
+                color = config.ThemeColor;
+            } else
+            {
+                color = uColor;
+            }
+
             Brush brushColor;
 
             if (color == "Galaxy")
             {
-                brushColor = ConvertColor(DarkModeColors.Galaxy);
-                UpdateGlobalColors(main, settings, brushColor);
+                brushColor = ConvertColor(ThemeColors.Galaxy);
+                UpdateGlobalColors(main, brushColor);
+            } else if (color == "HotPink")
+            {
+                brushColor = ConvertColor(ThemeColors.HotPink);
+                UpdateGlobalColors(main, brushColor);
             } else
             {
-                brushColor = ConvertColor(LightModeColors.White);
-                UpdateGlobalColors(main, settings, brushColor);
+                brushColor = ConvertColor(ThemeColors.LightGray);
+                UpdateGlobalColors(main, brushColor);
             }
 
             ThemeManager.Current.AccentColor = brushColor;
@@ -46,8 +64,10 @@ namespace ErebusLauncher
         {
             return (Brush)new BrushConverter().ConvertFrom(hex);
         }
-        private static void UpdateGlobalColors(MainWindow main, Settings settings, Brush color)
+        private static void UpdateGlobalColors(MainWindow main, Brush color)
         {
+            main.LaunchGame.Background = color;
+            main.SettingsButton.Background = color;
         }
 
     }
