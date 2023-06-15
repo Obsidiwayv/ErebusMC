@@ -17,5 +17,7 @@ namespace Erebus.Utils.Data
         public String JavaVersion { get; set; }
 
         public String DiscordPresence { get; set; }
+
+        public String WallpaperPath { get; set; }
     }
 }

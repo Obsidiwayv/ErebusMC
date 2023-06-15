@@ -19,6 +19,7 @@ using System.Xml.Linq;
 using System.IO;
 using System.Threading.Tasks;
 using Erebus.MojangAPI;
+using Erebus.MojangAPI.Model;
 
 namespace ErebusLauncher
 {
@@ -77,12 +78,15 @@ namespace ErebusLauncher
             LauncherVer.Content = SystemConfig.COMBINE_VERSION;
 
             UpdateTheme(CurrentConfig.Theme);
+            logger.DevStackLog(GetCurrentNews().Result.Entries[0].Title);
         }
 
         private void Card_ColorChanged(object sender, RoutedPropertyChangedEventArgs<Color> e)
         {
 
         }
+
+        private async Task<MainNewsManifest?> GetCurrentNews() => await News.GetNewsJSON();
 
         public void UpdateTheme(string dol)
         {
