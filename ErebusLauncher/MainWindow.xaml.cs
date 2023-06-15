@@ -78,7 +78,7 @@ namespace ErebusLauncher
             LauncherVer.Content = SystemConfig.COMBINE_VERSION;
 
             UpdateTheme(CurrentConfig.Theme);
-            logger.DevStackLog(GetCurrentNews().Result.Entries[0].Title);
+            //logger.DevStackLog(GetCurrentNews().Result.Entries[0].Title);
         }
 
         private void Card_ColorChanged(object sender, RoutedPropertyChangedEventArgs<Color> e)
