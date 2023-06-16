@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Refresh64": {
+      "commandName": "Project",
+      "commandLineArgs": "1.0"
+    }
+  }
+}

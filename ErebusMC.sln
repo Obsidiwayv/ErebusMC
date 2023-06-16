@@ -15,12 +15,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Obsidi.Jupiter", "ErebusLau
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SecureCore", "SecureCore", "{839BE278-5352-4EA8-9D06-7D318F58F700}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SecureCore.Main", "SecureCore\SecureCore.Main\SecureCore.Main.csproj", "{33FF2054-4F3A-47A5-A781-DE14926F6D67}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SecureCore.Main", "SecureCore\SecureCore.Main\SecureCore.Main.csproj", "{33FF2054-4F3A-47A5-A781-DE14926F6D67}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E126642D-D3EA-4375-988C-A0A3D78A6D5C}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Refresh64", "Refresh64\Refresh64.csproj", "{6CF464BA-6384-4A17-BA09-CDB167C988D3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -70,6 +72,14 @@ Global
 		{33FF2054-4F3A-47A5-A781-DE14926F6D67}.Release|Any CPU.Build.0 = Release|Any CPU
 		{33FF2054-4F3A-47A5-A781-DE14926F6D67}.Release|x64.ActiveCfg = Release|Any CPU
 		{33FF2054-4F3A-47A5-A781-DE14926F6D67}.Release|x64.Build.0 = Release|Any CPU
+		{6CF464BA-6384-4A17-BA09-CDB167C988D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6CF464BA-6384-4A17-BA09-CDB167C988D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6CF464BA-6384-4A17-BA09-CDB167C988D3}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{6CF464BA-6384-4A17-BA09-CDB167C988D3}.Debug|x64.Build.0 = Debug|Any CPU
+		{6CF464BA-6384-4A17-BA09-CDB167C988D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6CF464BA-6384-4A17-BA09-CDB167C988D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6CF464BA-6384-4A17-BA09-CDB167C988D3}.Release|x64.ActiveCfg = Release|Any CPU
+		{6CF464BA-6384-4A17-BA09-CDB167C988D3}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

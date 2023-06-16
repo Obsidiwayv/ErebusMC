@@ -21,6 +21,8 @@ using System.Threading.Tasks;
 using Erebus.MojangAPI;
 using Erebus.MojangAPI.Model;
 using System.Windows.Media.Imaging;
+using SevenZipExtractor;
+using System.Diagnostics;
 
 namespace ErebusLauncher
 {
@@ -53,6 +55,7 @@ namespace ErebusLauncher
             UpdateWallpaper();
 
             splash.Close();
+            StartRefreshProgram();
 
             var presence = new DiscordPresence();
             client = presence.RunConnection("Looking for a game", this);
@@ -81,12 +84,26 @@ namespace ErebusLauncher
             LauncherVer.Content = SystemConfig.COMBINE_VERSION;
 
             UpdateTheme(CurrentConfig.Theme);
+            //var UpdatePath = json.GetLauncherDataFolderPath() + "\\Update";
+            //using (ArchiveFile archiveFile = new ArchiveFile(UpdatePath + "\\d.zip"))
+            //{
+            //    archiveFile.Extract(UpdatePath + "\\Files"); // extract all
+            //}
             //logger.DevStackLog(GetCurrentNews().Result.Entries[0].Title);
         }
 
         private void Card_ColorChanged(object sender, RoutedPropertyChangedEventArgs<Color> e)
         {
 
+        }
+
+        private void StartRefreshProgram()
+        {
+            var p = new Process();
+            var processPath = "C:\\Users\\pizza\\source\\repos\\ErebusMC-master\\Refresh64\\bin\\Debug\\net6.0-windows\\Refresh64.exe";
+            p.StartInfo.FileName = processPath;
+            p.StartInfo.ArgumentList.Add(SystemConfig.VERSION);
+            p.Start();
         }
 
         private async Task<MainNewsManifest?> GetCurrentNews() => await News.GetNewsJSON();
@@ -111,7 +128,6 @@ namespace ErebusLauncher
                         Source = new BitmapImage(new Uri(json.config.WallpaperPath))
                     };
                     myBrush.ImageSource = image.Source;
-                    Grid grid = new Grid();
                     BackgroundGrid.Background = myBrush;
                 } catch (Exception err)
                 {
