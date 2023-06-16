@@ -41,5 +41,17 @@
                 <DropShadowEffect ShadowDepth="0" BlurRadius="25"/>
             </Label.Effect>
         </Label>
+        <Button x:Name="WallpaperButton" Content="Select" HorizontalAlignment="Left" Margin="10,324,0,0" VerticalAlignment="Top" Height="30" Width="296" Background="{x:Null}" BorderBrush="White" Click="WallpaperButton_Click"/>
+        <Label Content="Wallpaper" HorizontalAlignment="Left" Margin="10,291,0,0" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" FontFamily="Arial" Foreground="White" Width="98">
+            <Label.Effect>
+                <DropShadowEffect ShadowDepth="0" BlurRadius="25"/>
+            </Label.Effect>
+        </Label>
+        <Button x:Name="DiscordPresenceButton" Content="Select" HorizontalAlignment="Left" Margin="10,436,0,0" VerticalAlignment="Top" Height="30" Width="296" Background="{x:Null}" BorderBrush="White" Click="DiscordPresBox_Click"/>
+        <Label Content="Discord Presence" HorizontalAlignment="Left" Margin="10,403,0,0" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" FontFamily="Arial" Foreground="White" Width="130">
+            <Label.Effect>
+                <DropShadowEffect ShadowDepth="0" BlurRadius="25"/>
+            </Label.Effect>
+        </Label>
     </Grid>
 </Window>

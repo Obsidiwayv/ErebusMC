@@ -1,5 +1,6 @@
 ﻿using Erebus.MojangAPI;
 using Erebus.Utils;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -168,6 +169,57 @@ namespace ErebusLauncher.Windows
                 }
             }
 
+        }
+
+        private void WallpaperButton_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog dlg = new OpenFileDialog();
+            dlg.InitialDirectory = "c:\\";
+            dlg.Filter = "Image files (*.jpg, *.png)|*.jpg;*.png";
+            dlg.RestoreDirectory = true;
+            
+            if ((bool)dlg.ShowDialog())
+            {
+                try
+                {
+                    string selectedFileName = dlg.FileName;
+                    ImageBrush myBrush = new ImageBrush();
+                    var image = new Image()
+                    {
+                        Source = new BitmapImage(new Uri(dlg.FileName))
+                    };
+                    myBrush.ImageSource = image.Source;
+                    Grid grid = new Grid();
+                    Main.json.config.WallpaperPath = dlg.FileName;
+                    Main.BackgroundGrid.Background = myBrush;
+                    Main.json.SaveConfig();
+                } catch (Exception err)
+                {
+                    Main.logger.StackLog($"Unable to Access Wallpaper {err}");
+                }
+            }
+        }
+
+        private void DiscordPresBox_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (Main.client.IsInitialized)
+                {
+                    Main.json.config.DiscordPresence = "Disabled";
+                    Main.json.SaveConfig();
+                    Main.client.Deinitialize();
+                }
+                else
+                {
+                    Main.json.config.DiscordPresence = "Enabled";
+                    Main.json.SaveConfig();
+                    Main.client.Initialize();
+                }
+            } catch (Exception err)
+            {
+                Main.logger.StackLog($"Unable to init presence, stack has been provided\n{err}");
+            }
         }
     }
 }

@@ -20,6 +20,7 @@ using System.IO;
 using System.Threading.Tasks;
 using Erebus.MojangAPI;
 using Erebus.MojangAPI.Model;
+using System.Windows.Media.Imaging;
 
 namespace ErebusLauncher
 {
@@ -49,11 +50,13 @@ namespace ErebusLauncher
             ServicePointManager.DefaultConnectionLimit = 512;
             json.RunChecker();
             InitDarkAndLightBox();
+            UpdateWallpaper();
 
             splash.Close();
 
             var presence = new DiscordPresence();
             client = presence.RunConnection("Looking for a game", this);
+            UpdateDiscord();
 
             CurrentConfig = json.GetLauncherConfigFile();
 
@@ -87,6 +90,38 @@ namespace ErebusLauncher
         }
 
         private async Task<MainNewsManifest?> GetCurrentNews() => await News.GetNewsJSON();
+
+        private void UpdateDiscord()
+        {
+            if (json.config.DiscordPresence == "Disabled")
+            {
+                client.Deinitialize();
+            }
+        }
+
+        private void UpdateWallpaper()
+        {
+            if (json.config.WallpaperPath != "None")
+            {
+                try
+                {
+                    ImageBrush myBrush = new ImageBrush();
+                    var image = new Image()
+                    {
+                        Source = new BitmapImage(new Uri(json.config.WallpaperPath))
+                    };
+                    myBrush.ImageSource = image.Source;
+                    Grid grid = new Grid();
+                    BackgroundGrid.Background = myBrush;
+                } catch (Exception err)
+                {
+                    logger.StackLog("Clearing wallpaper from config file...");
+                    json.config.WallpaperPath = "None";
+                    json.SaveConfig();
+                    logger.StackLog($"Cannot use wallpaper, stack has been provided\n{err}");
+                }
+            }
+        }
 
         public void UpdateTheme(string dol)
         {

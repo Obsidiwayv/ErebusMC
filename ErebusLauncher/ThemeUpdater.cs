@@ -19,11 +19,17 @@ namespace ErebusLauncher
             {
                 main.BottomCard_Dark.Hide();
                 main.BottomCard_Light.Show();
+                main.NewsCardDark.Hide();
+                main.NewsCardLight.Show();
+                main.NewsText1.Foreground = Brushes.Black;
             }
             else
             {
                 main.BottomCard_Dark.Show();
                 main.BottomCard_Light.Hide();
+                main.NewsCardDark.Show();
+                main.NewsCardLight.Hide();
+                main.NewsText1.Foreground = Brushes.White;
             }
         }
 

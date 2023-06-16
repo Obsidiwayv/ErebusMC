@@ -19,7 +19,8 @@
         </Grid>
         <Image HorizontalAlignment="Left" Height="152" Margin="36,130,0,0" VerticalAlignment="Top" Width="251"/>
         <hc:Card x:Name="BottomCard_Light" Margin="36,0,36,37" Background="#7FFFFFFF" BorderBrush="{x:Null}" Foreground="White" Height="77" VerticalAlignment="Bottom" Visibility="Hidden"/>
-        <hc:Card x:Name="NewsCardDark" Margin="36,130,908,0" Background="#7F0E0E0E" BorderBrush="{x:Null}" Foreground="White" Height="203" VerticalAlignment="Top"/>
+        <hc:Card x:Name="NewsCardDark" Margin="36,130,36,178" Background="#7F0E0E0E" BorderBrush="{x:Null}" Foreground="White"/>
+        <hc:Card x:Name="NewsCardLight" Margin="36,130,36,178" Background="#7FFFFFFF" BorderBrush="{x:Null}" Foreground="White" Visibility="Hidden"/>
         <hc:Card x:Name="BottomCard_Dark" Margin="36,0,36,37" Background="#7F0E0E0E" BorderBrush="{x:Null}" Foreground="White" Height="77" VerticalAlignment="Bottom"/>
         <Button x:Name="LaunchGame" Content="Start Game" HorizontalAlignment="Right" Margin="0,0,56,56" VerticalAlignment="Bottom" RenderTransformOrigin="1.527,-4.999" Background="#FF4E00FF" BorderBrush="{x:Null}" FontSize="14" FontFamily="Arial" Height="40" Width="148" Grid.Row="1">
             <Button.Effect>
@@ -67,7 +68,7 @@
                 <DropShadowEffect ShadowDepth="0" BlurRadius="25"/>
             </Label.Effect>
         </Label>
-        <Label x:Name="NewsText1" Content="Theme" HorizontalAlignment="Left" Margin="110,291,0,0" VerticalAlignment="Top" Width="108" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="14" FontFamily="Arial">
+        <Label x:Name="NewsText1" Content="News coming in a later update" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="14" FontFamily="Arial" HorizontalAlignment="Stretch" Margin="431,279,425,307" VerticalAlignment="Stretch">
             <Label.Effect>
                 <DropShadowEffect ShadowDepth="0" BlurRadius="25"/>
             </Label.Effect>
