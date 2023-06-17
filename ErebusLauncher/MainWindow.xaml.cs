@@ -21,7 +21,6 @@ using System.Threading.Tasks;
 using Erebus.MojangAPI;
 using Erebus.MojangAPI.Model;
 using System.Windows.Media.Imaging;
-using SevenZipExtractor;
 using System.Diagnostics;
 
 namespace ErebusLauncher
@@ -84,12 +83,6 @@ namespace ErebusLauncher
             LauncherVer.Content = SystemConfig.COMBINE_VERSION;
 
             UpdateTheme(CurrentConfig.Theme);
-            //var UpdatePath = json.GetLauncherDataFolderPath() + "\\Update";
-            //using (ArchiveFile archiveFile = new ArchiveFile(UpdatePath + "\\d.zip"))
-            //{
-            //    archiveFile.Extract(UpdatePath + "\\Files"); // extract all
-            //}
-            //logger.DevStackLog(GetCurrentNews().Result.Entries[0].Title);
         }
 
         private void Card_ColorChanged(object sender, RoutedPropertyChangedEventArgs<Color> e)
@@ -99,11 +92,21 @@ namespace ErebusLauncher
 
         private void StartRefreshProgram()
         {
-            var p = new Process();
-            var processPath = "C:\\Users\\pizza\\source\\repos\\ErebusMC-master\\Refresh64\\bin\\Debug\\net6.0-windows\\Refresh64.exe";
-            p.StartInfo.FileName = processPath;
-            p.StartInfo.ArgumentList.Add(SystemConfig.VERSION);
-            p.Start();
+            try
+            {
+                var p = new Process();
+                var processPath = "..\\Updater\\Refresh64.exe";
+                p.StartInfo.FileName = processPath;
+                p.StartInfo.ArgumentList.Add(SystemConfig.VERSION);
+                p.Start();
+            } catch (Exception ex)
+            {
+                if (!SystemConfig.IS_DEV)
+                {
+                    MessageBox.Show("Unable to find Refresh64.exe! cannot continue without updates");
+                    Application.Current.Shutdown();
+                }
+            }
         }
 
         private async Task<MainNewsManifest?> GetCurrentNews() => await News.GetNewsJSON();

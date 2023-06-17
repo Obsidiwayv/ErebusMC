@@ -44,7 +44,6 @@
     <PackageReference Include="HandyControls" Version="3.4.5" />
     <PackageReference Include="NewId" Version="4.0.1" />
     <PackageReference Include="ProjBobcat" Version="1.30.0" />
-    <PackageReference Include="SevenZipExtractor" Version="1.0.17" />
   </ItemGroup>
 
   <ItemGroup>

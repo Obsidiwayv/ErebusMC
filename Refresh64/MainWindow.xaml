@@ -5,10 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Refresh64"
         mc:Ignorable="d"
-        Title="MainWindow" Height="250" Width="550"
-        ResizeMode="CanMinimize">
-    <Grid Background="White">
-        <Button x:Name="UpdateButton" Content="Button" HorizontalAlignment="Left" Margin="35,185,0,0" VerticalAlignment="Top" Height="31" Width="95" Click="UpdateButton_Click"/>
-        <ProgressBar x:Name="DownloadProg" HorizontalAlignment="Left" Margin="146,185,0,18" Width="369"/>
+        Title="MainWindow" Height="150" Width="380">
+    <Grid>
+        <Label x:Name="T" Content="You know the rules and so do I" Margin="40,51,40,51"/>
+
     </Grid>
 </Window>
