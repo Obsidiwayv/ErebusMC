@@ -22,6 +22,7 @@ using Erebus.MojangAPI;
 using Erebus.MojangAPI.Model;
 using System.Windows.Media.Imaging;
 using System.Diagnostics;
+using CmlLib.Core.Downloader;
 
 namespace ErebusLauncher
 {
@@ -57,23 +58,23 @@ namespace ErebusLauncher
             StartRefreshProgram();
 
             var presence = new DiscordPresence();
-            client = presence.RunConnection("Looking for a game", this);
-            UpdateDiscord();
+            //client = presence.RunConnection("Looking for a game", this);
+            //UpdateDiscord();
 
             CurrentConfig = json.GetLauncherConfigFile();
 
             ThemeUpdater.UpdateAccents(this, true, "NONE");
 
-            if (CurrentConfig.JavaVersion == "None" && CurrentConfig.GameVersion == "None")
+            if (CurrentConfig.JavaVersion == "None")
             {
                 if (CurrentConfig.Theme == "Light")
                 {
-                    //LaunchGameButton.Background = Brushes.Black;
-                    //LaunchGameButton.Foreground = Brushes.White;
+                    LaunchGame.Background = Brushes.Black;
+                    LaunchGame.Foreground = Brushes.White;
                 } else
                 {
-                    //LaunchGameButton.Background = Brushes.White;
-                    //LaunchGameButton.Foreground = Brushes.Black;
+                    LaunchGame.Background = Brushes.White;
+                    LaunchGame.Foreground = Brushes.Black;
                 }
                 CanLaunchGame = false;
             }
@@ -239,6 +240,32 @@ namespace ErebusLauncher
             ThemeBox.Items.Add(light);
 
             ThemeBox.Items.Add(dark);
+        }
+
+        public void ChangeProgressBar(DownloadFileChangedEventArgs e)
+        {
+            DownloadingText.Content = $"Downloading Files: {e.ProgressedFileCount}/{e.TotalFileCount}";
+        }
+
+        public void ProgressBarChange(object sender, System.ComponentModel.ProgressChangedEventArgs e)
+        { }
+
+
+        private void LaunchGame_Click(object sender, RoutedEventArgs e)
+        {
+            if (json.config.GameVersion == "None")
+            {
+                MessageBox.Show("You have not selected a minecraft version yet ( its in the settings :] )");
+                return;
+            }
+
+            if (json.data.Name == "GenericUser")
+            {
+                MessageBox.Show("Your username is empty, make one up or use something.");
+            }
+
+            var launcher = new GameLauncher(this);
+            launcher.LaunchGame();
         }
     }
 }

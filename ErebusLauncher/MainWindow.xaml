@@ -11,7 +11,7 @@
     <Grid x:Name="MainGrid">
         <Grid x:Name="BackgroundGrid" Margin="-67,-52,-73,-47" Grid.RowSpan="2">
             <Grid.Background>
-                <ImageBrush ImageSource="/Wallpapers/Forest.png" TileMode="None" Stretch="Fill"/>
+                <ImageBrush ImageSource="/Wallpapers/voidblock-wallpaper-1.png" TileMode="None" Stretch="Fill"/>
             </Grid.Background>
             <Grid.Effect>
                 <BlurEffect Radius="25"/>
@@ -22,7 +22,7 @@
         <hc:Card x:Name="NewsCardDark" Margin="36,130,36,178" Background="#7F0E0E0E" BorderBrush="{x:Null}" Foreground="White"/>
         <hc:Card x:Name="NewsCardLight" Margin="36,130,36,178" Background="#7FFFFFFF" BorderBrush="{x:Null}" Foreground="White" Visibility="Hidden"/>
         <hc:Card x:Name="BottomCard_Dark" Margin="36,0,36,37" Background="#7F0E0E0E" BorderBrush="{x:Null}" Foreground="White" Height="77" VerticalAlignment="Bottom"/>
-        <Button x:Name="LaunchGame" Content="Start Game" HorizontalAlignment="Right" Margin="0,0,56,56" VerticalAlignment="Bottom" RenderTransformOrigin="1.527,-4.999" Background="#FF4E00FF" BorderBrush="{x:Null}" FontSize="14" FontFamily="Arial" Height="40" Width="148" Grid.Row="1">
+        <Button x:Name="LaunchGame" Content="Start Game" HorizontalAlignment="Right" Margin="0,0,56,56" VerticalAlignment="Bottom" RenderTransformOrigin="1.527,-4.999" Background="#FF4E00FF" BorderBrush="{x:Null}" FontSize="14" FontFamily="Arial" Height="40" Width="148" Grid.Row="1" Click="LaunchGame_Click">
             <Button.Effect>
                 <DropShadowEffect ShadowDepth="0" BlurRadius="25" Opacity="0.5"/>
             </Button.Effect>
@@ -69,6 +69,11 @@
             </Label.Effect>
         </Label>
         <Label x:Name="NewsText1" Content="News coming in a later update" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="14" FontFamily="Arial" HorizontalAlignment="Stretch" Margin="431,279,425,307" VerticalAlignment="Stretch">
+            <Label.Effect>
+                <DropShadowEffect ShadowDepth="0" BlurRadius="25"/>
+            </Label.Effect>
+        </Label>
+        <Label x:Name="DownloadingText" Content="" Margin="0,0,0,9" VerticalAlignment="Bottom" Width="524" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="14" FontFamily="Arial" HorizontalContentAlignment="Center" Foreground="White" Height="28">
             <Label.Effect>
                 <DropShadowEffect ShadowDepth="0" BlurRadius="25"/>
             </Label.Effect>

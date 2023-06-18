@@ -1,4 +1,6 @@
-﻿using Erebus.MojangAPI;
+﻿using CmlLib.Core;
+using CmlLib.Core.Version;
+using Erebus.MojangAPI;
 using Erebus.Utils;
 using Microsoft.Win32;
 using System;
@@ -107,11 +109,15 @@ namespace ErebusLauncher.Windows
 
         private async void SetVersionBox()
         {
+            var path = new MinecraftPath();
+            var launcher = new CMLauncher(path);
+
             try
             {
                 var versions = await Versions.GetVersionJSON();
+                var known_games = launcher.GetAllVersions();
 
-                Main.logger.StackLog("Looping through all known minecraft versions");
+                Main.logger.StackLog("Looping through all known minecraft versions and games");
 
                 foreach (var version in versions.Versions)
                 {
@@ -120,6 +126,15 @@ namespace ErebusLauncher.Windows
                         Content = version.Id
                     };
                     MCVersions.Add(version.Id);
+                    GameVersionBox.Items.Add(versionItem);
+                }
+                foreach (var game in known_games)
+                {
+                    var versionItem = new ListBoxItem()
+                    {
+                        Content = game.Name
+                    };
+                    MCVersions.Add(game.Name);
                     GameVersionBox.Items.Add(versionItem);
                 }
             }
@@ -155,7 +170,7 @@ namespace ErebusLauncher.Windows
                 List<string> dirs = new List<string>(Directory.EnumerateDirectories(joined));
                 foreach (var dir in dirs)
                 {
-                    var content = $"{dir}\\bin\\java.exe";
+                    var content = $"{dir}\\bin\\javaw.exe";
 
                     Main.logger.StackLog($"found java path: {content}");
 

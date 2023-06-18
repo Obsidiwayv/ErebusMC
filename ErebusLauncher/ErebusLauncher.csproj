@@ -26,8 +26,10 @@
     <None Remove="Wallpapers\Cabin.png" />
     <None Remove="Wallpapers\CabinUpstairs.png" />
     <None Remove="Wallpapers\CabinView.png" />
+    <None Remove="Wallpapers\CUBE.png" />
     <None Remove="Wallpapers\Forest.png" />
     <None Remove="Wallpapers\Kitchen.png" />
+    <None Remove="Wallpapers\voidblock-wallpaper-1.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -64,12 +66,14 @@
     <Resource Include="Wallpapers\CabinView.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Wallpapers\CUBE.png" />
     <Resource Include="Wallpapers\Forest.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Wallpapers\Kitchen.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Wallpapers\voidblock-wallpaper-1.png" />
   </ItemGroup>
 
   <ItemGroup>

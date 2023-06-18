@@ -38,6 +38,10 @@ namespace Erebus.Utils
                 string json = JsonSerializer.Serialize(data);
                 File.WriteAllText(playerPath, json);
             }
+            else
+            {
+                data = GetUserDataFile();
+            }
             if (!File.Exists(configPath))
             {
                 String json = JsonSerializer.Serialize(config);
@@ -70,6 +74,14 @@ namespace Erebus.Utils
             var path = Path.Combine(GetLauncherDataFolderPath(), "config.json");
             var configFile = File.ReadAllText(path);
             var config = JsonSerializer.Deserialize<UserConfig>(configFile);
+            return config;
+        }
+
+        public DataUser GetUserDataFile()
+        {
+            var path = Path.Combine(GetLauncherDataFolderPath(), "player.json");
+            var configFile = File.ReadAllText(path);
+            var config = JsonSerializer.Deserialize<DataUser>(configFile);
             return config;
         }
     }

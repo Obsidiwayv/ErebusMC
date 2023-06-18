@@ -41,12 +41,12 @@ namespace Refresh64
                 } else
                 {
                     WriteToLog("ErebusLauncher is already updated");
-                    Application.Current.Shutdown();
+                    this.Shutdown();
                 }
             } catch (Exception exc)
             {
                 MessageBox.Show($"Cannot check for updates, stack:\n{exc}", "Alert");
-                Application.Current.Shutdown();
+                this.Shutdown();
             }
         }
 
@@ -130,7 +130,7 @@ namespace Refresh64
                     WriteToLog("Extracted zip file to Backup and updated launcher");
                     MessageBox.Show("Finished Downloading update");
                     File.Delete(downloadPath);
-                    Application.Current.Shutdown();
+                    this.Shutdown();
                 }
             }
         }
