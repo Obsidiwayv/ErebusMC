@@ -19,5 +19,7 @@ namespace Erebus.Utils.Data
         public String DiscordPresence { get; set; }
 
         public String WallpaperPath { get; set; }
+
+        public String RamSize { get; set; }
     }
 }

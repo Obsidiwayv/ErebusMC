@@ -58,7 +58,7 @@ namespace ErebusLauncher
             StartRefreshProgram();
 
             var presence = new DiscordPresence();
-            //client = presence.RunConnection("Looking for a game", this);
+            client = presence.RunConnection("Looking for a game", this);
             //UpdateDiscord();
 
             CurrentConfig = json.GetLauncherConfigFile();

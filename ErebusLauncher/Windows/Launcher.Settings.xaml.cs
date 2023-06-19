@@ -1,8 +1,10 @@
 ﻿using CmlLib.Core;
 using CmlLib.Core.Version;
+using CmlLib.Core.VersionLoader;
 using Erebus.MojangAPI;
 using Erebus.Utils;
 using Microsoft.Win32;
+using SharpCompress;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -33,6 +35,10 @@ namespace ErebusLauncher.Windows
 
         private List<String> MCVersions;
 
+        private List<String> MCVersions_Custom;
+
+        private List<String> RamSize;
+
         private List<String> ColorLists;
 
         public Settings(MainWindow main)
@@ -48,10 +54,15 @@ namespace ErebusLauncher.Windows
 
             MCVersions = new List<String>();
 
+            RamSize = new List<String>();
+
+            MCVersions_Custom = new List<String>();
+
             Main = main;
 
             SetJavaBox();
             SetVersionBox();
+            SetRamBox();
 
             var boxUtils = new BoxUtils();
             var colors = boxUtils.GetColors();
@@ -86,9 +97,28 @@ namespace ErebusLauncher.Windows
             Main.JavaPath.Content = $"Java Path: {selectedJava}";
         }
 
+        private void RamSize_Changed(object sender, SelectionChangedEventArgs e)
+        {
+            var selected = RamSize[RamUsageBox.SelectedIndex];
+            Main.json.config.RamSize = selected;
+            Main.json.SaveConfig();
+        }
+
         private void VersionListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var selected = MCVersions[GameVersionBox.SelectedIndex];
+            Main.logger.StackLog($"user selected Minecraft Version [{selected}]");
+            Main.json.config.GameVersion = selected;
+            Main.logger.StackLog($"Saving Minecraft configuration");
+            Main.json.SaveConfig();
+            Main.GameVersion.Content = $"Game Version: {selected}";
+            MakeInfoNotifcation($"Switched game version to {selected}");
+        }
+
+        // pretty much the same thing except it uses custom version...
+        private void VersionListBox_Custom_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var selected = MCVersions_Custom[CustomGameBox.SelectedIndex];
             Main.logger.StackLog($"user selected Minecraft Version [{selected}]");
             Main.json.config.GameVersion = selected;
             Main.logger.StackLog($"Saving Minecraft configuration");
@@ -107,15 +137,36 @@ namespace ErebusLauncher.Windows
             ThemeUpdater.UpdateAccents(Main, false, selection);
         }
 
+        private void SetRamBox()
+        {
+            var ramSizes = new String[]
+            {
+                "1024",
+                "2048",
+                "3074",
+                "4096",
+                "5120",
+                "6144"
+            };
+
+            foreach (var ram in ramSizes)
+            {
+                var ritm = new ListBoxItem()
+                {
+                    Content = ram
+                };
+                RamSize.Add(ram);
+                RamUsageBox.Items.Add(ritm);
+            }
+        }
+
         private async void SetVersionBox()
         {
-            var path = new MinecraftPath();
-            var launcher = new CMLauncher(path);
-
             try
             {
+                var path = new MinecraftPath();
+                var localVersions = new LocalVersionLoader(path);
                 var versions = await Versions.GetVersionJSON();
-                var known_games = launcher.GetAllVersions();
 
                 Main.logger.StackLog("Looping through all known minecraft versions and games");
 
@@ -128,14 +179,15 @@ namespace ErebusLauncher.Windows
                     MCVersions.Add(version.Id);
                     GameVersionBox.Items.Add(versionItem);
                 }
-                foreach (var game in known_games)
+
+                foreach (var version in localVersions.GetVersionMetadatas())
                 {
                     var versionItem = new ListBoxItem()
                     {
-                        Content = game.Name
+                        Content = version.Name
                     };
-                    MCVersions.Add(game.Name);
-                    GameVersionBox.Items.Add(versionItem);
+                    MCVersions_Custom.Add(version.Name);
+                    CustomGameBox.Items.Add(versionItem);
                 }
             }
             catch (Exception e)

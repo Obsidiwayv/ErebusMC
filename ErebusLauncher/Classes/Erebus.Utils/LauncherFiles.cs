@@ -27,7 +27,8 @@ namespace Erebus.Utils
                 Theme = "Dark",
                 ThemeColor = "Galaxy",
                 DiscordPresence = "Enabled",
-                WallpaperPath = "None"
+                WallpaperPath = "None",
+                RamSize = "4096"
             };
 
             Directory.CreateDirectory(GetLauncherDataFolderPath());

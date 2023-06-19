@@ -16,6 +16,10 @@ using ProjBobcat.DefaultComponent.Launch;
 using ProjBobcat.DefaultComponent.Logging;
 using System.Threading;
 using ProjBobcat.Event;
+using System.Linq;
+using System.IO;
+using System.Runtime.ConstrainedExecution;
+using System.Net.Http;
 
 namespace ErebusLauncher
 {
@@ -24,33 +28,15 @@ namespace ErebusLauncher
 
         private MainWindow Main;
 
-        private DefaultGameCore core;
-
-        private Guid token;
-
         private CMLauncher launcher;
 
         public GameLauncher(MainWindow main)
         {
             Main = main;
 
-            token = Guid.NewGuid();
-
             launcher = new CMLauncher(new MinecraftPath());
 
             var rootPath = MinecraftPath.GetOSDefaultPath();
-
-            core = new DefaultGameCore
-            {
-                ClientToken = token, // Pick any GUID as you like, and it does not affect launching.
-                RootPath = rootPath,
-                VersionLocator = new DefaultVersionLocator(rootPath, token)
-                {
-                    LauncherProfileParser = new DefaultLauncherProfileParser(rootPath, token),
-                    LauncherAccountParser = new DefaultLauncherAccountParser(rootPath, token)
-                },
-                GameLogResolver = new DefaultGameLogResolver()
-            };
         }
 
         public async void LaunchGame()
@@ -58,46 +44,31 @@ namespace ErebusLauncher
             var configs = Main.json.config;
             var user_data = Main.json.data;
 
-
             try
             {
-                var launchSettings = new LaunchSettings
-                {
-                    FallBackGameArguments = new GameArguments
-                    {
-                        GcType = GcType.G1Gc,
-                        JavaExecutable = configs.JavaVersion,
-                        Resolution = new ResolutionModel
-                        {
-                            Height = 600,
-                            Width = 800
-                        },
-                        MinMemory = 512,
-                        MaxMemory = 3072
-                    },
-                    Version = configs.GameVersion,
-                    GameName = configs.GameVersion,
-                    VersionInsulation = false,
-                    GameResourcePath = core.RootPath,
-                    GamePath = core.RootPath,
-                    VersionLocator = core.VersionLocator,
-                    Authenticator = new OfflineAuthenticator //离线认证
-                    {
-                        Username = user_data.Name, //离线用户名
-                        LauncherAccountParser = core.VersionLocator.LauncherAccountParser
-                    }
-                };
-
-                // we are just downloading, no need to launch this...
-                await launcher.CreateProcessAsync(configs.GameVersion, new MLaunchOption{});
-
-                core.GameExitEventDelegate += HandleGameExit;
-
                 launcher.FileChanged += Main.ChangeProgressBar;
 
-                var result = await core.LaunchTaskAsync(launchSettings);
+                // we are just downloading, no need to launch this...
+                var process = await launcher.CreateProcessAsync(configs.GameVersion, new MLaunchOption
+                {
+                    MaximumRamMb = int.Parse(configs.RamSize),
+                    Session = MSession.GetOfflineSession(user_data.Name),
+                    JavaPath = configs.JavaVersion,
+                    VersionType = SystemConfig.DEFAULT_NAME,
+                    GameLauncherName = SystemConfig.DEFAULT_NAME,
+                    Path = new MinecraftPath(),
+                    JVMArguments = new string[]
+                    { 
+                        $"-javaagent:{launcher.MinecraftPath.BasePath + "\\Authlib.jar"}=ely.by"
+                    }
+                });
+
+                process.Exited += HandleGameExit;
+                process.ErrorDataReceived += Process_ErrorDataReceived;
+
+                //var result = await core.LaunchTaskAsync(launchSettings);
                 Main.DownloadingText.Content = "Now launching the game...";
-                Main.logger.StackLog($"{result.Error.Exception}");
+                process.Start();
             } catch (Exception err)
             {
                 Main.logger.StackLine();
@@ -106,9 +77,13 @@ namespace ErebusLauncher
             }
         }
 
-        private void HandleGameExit(object? sender, GameExitEventArgs e)
+        private void Process_ErrorDataReceived(object sender, System.Diagnostics.DataReceivedEventArgs e)
         {
-            Main.Show();
+            Main.logger.StackLog(e.Data);
+        }
+
+        private void HandleGameExit(object? sender, EventArgs e)
+        {
         }
     }
 }

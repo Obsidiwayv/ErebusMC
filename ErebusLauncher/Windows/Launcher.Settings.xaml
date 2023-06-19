@@ -41,14 +41,39 @@
                 <DropShadowEffect ShadowDepth="0" BlurRadius="25"/>
             </Label.Effect>
         </Label>
-        <Button x:Name="WallpaperButton" Content="Select" HorizontalAlignment="Left" Margin="257,136,0,0" VerticalAlignment="Top" Height="30" Width="148" Background="White" BorderBrush="White" Click="WallpaperButton_Click" Foreground="Black"/>
-        <Label Content="Wallpaper" HorizontalAlignment="Left" Margin="257,99,0,0" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" FontFamily="Arial" Foreground="White" Width="98">
+        <Button x:Name="WallpaperButton" Content="Select" HorizontalAlignment="Left" Margin="257,224,0,0" VerticalAlignment="Top" Height="30" Width="148" Background="White" BorderBrush="White" Click="WallpaperButton_Click" Foreground="Black"/>
+        <Label Content="Wallpaper" HorizontalAlignment="Left" Margin="257,187,0,0" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" FontFamily="Arial" Foreground="White" Width="98">
             <Label.Effect>
                 <DropShadowEffect ShadowDepth="0" BlurRadius="25"/>
             </Label.Effect>
         </Label>
-        <Button x:Name="DiscordPresenceButton" Content="Select" HorizontalAlignment="Left" Margin="39,220,0,0" VerticalAlignment="Top" Height="30" Width="148" Background="White" BorderBrush="White" Click="DiscordPresBox_Click" Foreground="Black" IsEnabled="False"/>
-        <Label Content="Discord Presence" HorizontalAlignment="Left" Margin="39,187,0,0" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" FontFamily="Arial" Foreground="White" Width="118">
+        <Button x:Name="DiscordPresenceButton" Content="Select" HorizontalAlignment="Left" Margin="39,0,0,18" Width="148" Background="White" BorderBrush="White" Click="DiscordPresBox_Click" Foreground="Black" IsEnabled="False" VerticalAlignment="Bottom" Height="28"/>
+        <Label Content="Discord Presence" HorizontalAlignment="Left" Margin="39,0,0,52" VerticalAlignment="Bottom" Background="{x:Null}" BorderBrush="{x:Null}" FontFamily="Arial" Foreground="White" Width="118">
+            <Label.Effect>
+                <DropShadowEffect ShadowDepth="0" BlurRadius="25"/>
+            </Label.Effect>
+        </Label>
+        <ComboBox IsEditable="False" x:Name="CustomGameBox" VerticalAlignment="Top" BorderBrush="White" Background="{x:Null}" FontSize="14" FontFamily="Arial" Margin="254,132,48,0" Foreground="White" SelectionChanged="VersionListBox_Custom_SelectionChanged">
+            <ComboBox.Effect>
+                <DropShadowEffect ShadowDepth="0" BlurRadius="25"/>
+            </ComboBox.Effect>
+        </ComboBox>
+        <Label Content="Custom Game" HorizontalAlignment="Left" Margin="257,99,0,0" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" FontFamily="Arial" Foreground="White">
+            <Label.Effect>
+                <DropShadowEffect ShadowDepth="0" BlurRadius="25"/>
+            </Label.Effect>
+        </Label>
+        <Label Content="Ram Usage" HorizontalAlignment="Left" Margin="39,187,0,0" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" FontFamily="Arial" Foreground="White" Width="118">
+            <Label.Effect>
+                <DropShadowEffect ShadowDepth="0" BlurRadius="25"/>
+            </Label.Effect>
+        </Label>
+        <ComboBox IsEditable="False" x:Name="RamUsageBox" VerticalAlignment="Top" BorderBrush="White" Background="{x:Null}" FontSize="14" FontFamily="Arial" Margin="39,225,263,0" Foreground="White" SelectionChanged="RamSize_Changed">
+            <ComboBox.Effect>
+                <DropShadowEffect ShadowDepth="0" BlurRadius="25"/>
+            </ComboBox.Effect>
+        </ComboBox>
+        <Label Content="I did the math for you" HorizontalAlignment="Left" Margin="39,201,0,0" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" FontFamily="Arial" Foreground="#1FFFFFFF" Width="165">
             <Label.Effect>
                 <DropShadowEffect ShadowDepth="0" BlurRadius="25"/>
             </Label.Effect>

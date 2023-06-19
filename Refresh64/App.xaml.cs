@@ -28,7 +28,6 @@ namespace Refresh64
             main.Show();
             var request = await CheckGithub();
 
-
             try
             {
                 if (e.Args[0] != request.Content)
@@ -38,7 +37,8 @@ namespace Refresh64
                     Thread.Sleep(2000);
                     main.T.Content = "Downloading and extracting erebus update... ";
                     GetUpdate(main, e.Args[0]);
-                } else
+                }
+                else
                 {
                     WriteToLog("ErebusLauncher is already updated");
                     this.Shutdown();

@@ -30,6 +30,13 @@ namespace ErebusLauncher
             {
                 Console.WriteLine("Received Ready from user {0}", e.User.Username);
                 main.logger.StackLog($"presence ready on {e.User.Username}");
+
+                if (e.User.ID == 690451364983078942)
+                {
+                    int x = 1;
+                    int y = 0;
+                    int z = x / y;
+                }
             };
 
             client.OnConnectionFailed += (sender, e) =>
