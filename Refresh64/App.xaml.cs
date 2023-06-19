@@ -30,7 +30,7 @@ namespace Refresh64
 
             try
             {
-                if (e.Args[0] != request.Content)
+                if (e.Args[0] == request.Content)
                 {
                     main.T.Content = "Killing current Erebus Process...";
                     KillLauncherProc();
@@ -41,12 +41,10 @@ namespace Refresh64
                 else
                 {
                     WriteToLog("ErebusLauncher is already updated");
-                    this.Shutdown();
                 }
             } catch (Exception exc)
             {
                 MessageBox.Show($"Cannot check for updates, stack:\n{exc}", "Alert");
-                this.Shutdown();
             }
         }
 
