@@ -20,6 +20,8 @@ using System.Linq;
 using System.IO;
 using System.Runtime.ConstrainedExecution;
 using System.Net.Http;
+using DiscordRPC;
+using Erebus.Utils;
 
 namespace ErebusLauncher
 {
@@ -79,6 +81,11 @@ namespace ErebusLauncher
 
                 //var result = await core.LaunchTaskAsync(launchSettings);
                 Main.DownloadingText.Content = "Now launching the game...";
+                Main.client.SetPresence(new DiscordRPC.RichPresence()
+                {
+                    Details = $"playing minecraft {configs.GameVersion}",
+                    State = "Minecraft",
+                });
                 process.Start();
             } catch (Exception err)
             {
@@ -95,6 +102,17 @@ namespace ErebusLauncher
 
         private void HandleGameExit(object? sender, EventArgs e)
         {
+            var LargeImage = SystemUtils.IsLightTheme() ? "light" : "dark";
+
+            Main.client.SetPresence(new RichPresence()
+            {
+                Details = "Looking for a game",
+                State = "In the launcher",
+                Assets = new Assets()
+                {
+                    LargeImageKey = LargeImage
+                }
+            });
         }
     }
 }
