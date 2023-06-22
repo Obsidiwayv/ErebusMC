@@ -46,6 +46,17 @@ namespace ErebusLauncher
 
             try
             {
+                if (!File.Exists(MinecraftPath.GetOSDefaultPath() + "\\launcher_profiles.json"))
+                {
+                    File.Create(MinecraftPath.GetOSDefaultPath() + "\\launcher_profiles.json");
+                }
+            } catch (Exception ex)
+            {
+                Main.logger.StackLog($"Cannot create launcher_profiles.json\nstack:\n{ex}");
+            }
+
+            try
+            {
                 launcher.FileChanged += Main.ChangeProgressBar;
 
                 // we are just downloading, no need to launch this...

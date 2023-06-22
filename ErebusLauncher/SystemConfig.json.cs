@@ -10,7 +10,7 @@ namespace ErebusLauncher
     {
         public static String VERSION = "1.0";
 
-        public static Boolean IS_DEV = true;
+        public static Boolean IS_DEV = false;
 
         public static String COMBINE_VERSION = $"{VERSION}{(IS_DEV ? "-Development" : "")}";
 

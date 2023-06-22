@@ -244,7 +244,7 @@ namespace ErebusLauncher
 
         public void ChangeProgressBar(DownloadFileChangedEventArgs e)
         {
-            DownloadingText.Content = $"Downloading Files: {e.ProgressedFileCount}/{e.TotalFileCount}";
+            DownloadingText.Content = $"Downloading/Checking Files: {e.ProgressedFileCount}/{e.TotalFileCount}";
         }
 
         public void ProgressBarChange(object sender, System.ComponentModel.ProgressChangedEventArgs e)
